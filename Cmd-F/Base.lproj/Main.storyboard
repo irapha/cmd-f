@@ -45,6 +45,9 @@
                             <constraint firstItem="VKS-pm-XCQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="74.5" id="wX7-CT-8Zn"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainImageView" destination="hLj-Q2-Seg" id="ZMZ-ur-ClP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

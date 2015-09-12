@@ -9,16 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController, G8TesseractDelegate {
+    
+    @IBOutlet weak var mainImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         var tesseract : G8Tesseract = G8Tesseract(language:"eng")
         tesseract.delegate = self
-        tesseract.image = UIImage(named: "image_sample.jpg")
+        tesseract.image = UIImage(named: "image_sample_2.jpeg")?.g8_blackAndWhite().g8_grayScale()
         tesseract.recognize()
         
-//        tesseract
+        mainImageView.image = tesseract.image
+        NSLog("%@", tesseract.recognizedText)
     }
     
     override func viewDidAppear(animated: Bool) {

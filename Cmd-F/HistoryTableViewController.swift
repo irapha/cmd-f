@@ -54,7 +54,7 @@ class HistoryTableViewController: UITableViewController {
         let imageView = cell.viewWithTag(1) as! UIImageView
         
         textView.text = historyArray![indexPath.row].historyCellText
-        imageView.image = UIImage(contentsOfFile: historyArray![indexPath.row].historyCellImage.filePathURL!.absoluteString)
+        imageView.image = UIImage(contentsOfFile: historyArray![indexPath.row].historyCellImage.filePathURL!.absoluteString!)
         
         
 
