@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Cmd_F
+import Cmd_F
 
 class Cmd_FTests: XCTestCase {
     
