@@ -20,7 +20,7 @@ class GoogleBooksRemote: NSObject {
     
     
     func connection(didReceiveResponse: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
-        println("didReceiveResponse")
+        NSLog("didReceiveResponse")
     }
     
     func connection(connection: NSURLConnection!, didReceiveData conData: NSData!) {
@@ -28,12 +28,11 @@ class GoogleBooksRemote: NSObject {
     }
     
     func connectionDidFinishLoading(connection: NSURLConnection!) {
-        println("here's your data:")
-        println(self.data)
+        // send self.data
     }
     
     
     deinit {
-        println("deiniting remote.")
+      NSLog("deiniting remote.")
     }
 }

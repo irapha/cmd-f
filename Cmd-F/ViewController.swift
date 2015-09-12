@@ -12,22 +12,25 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     var tesseract: G8Tesseract?
     @IBOutlet var imageView: UIImageView!
     
+    @IBOutlet weak var mainImageView: UIImageView!
 
     @IBOutlet var overlayView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("started...")
-//        let t:G8Tesseract = G8Tesseract(language:"eng")
-//        t.delegate = self
-//        t.image = UIImage(named: "image_sample.jpg")
-//        t.recognize()
-//        print(t.recognizedText)
-        tesseract = G8Tesseract(language: "eng")
-        tesseract!.delegate = self
-        tesseract?.engineMode = .TesseractCubeCombined
-        tesseract?.pageSegmentationMode = .Auto
-        tesseract?.maximumRecognitionTime = 60.0
-        print("ys")
+        // Do any additional setup after loading the view, typically from a nib.
+        var tesseract : G8Tesseract = G8Tesseract(language:"eng")
+        tesseract.delegate = self
+        tesseract.image = UIImage(named: "image_sample.jpg")?.g8_blackAndWhite().g8_grayScale()
+        tesseract.recognize()
+        
+        mainImageView.image = tesseract.image
+        NSLog("%@", tesseract.recognizedText)
+        
+        NSLog("Making simple request")
+        
+        let remote = GoogleBooksRemote()
+        remote.connect("/books/v1/volumes?q=flowers&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -76,46 +79,8 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         return false; // return true if you need to interrupt tesseract before it finishes
     }
     
-    func recognizeImageText(image: UIImage) -> String {
-        if let t = tesseract {
-            t.image = scaleImage(image, maxDimension: 640).g8_blackAndWhite()
-            t.recognize()
-            return t.recognizedText
-        } else {
-            return ""
-        }
-    }
-    
-    func scaleImage(image: UIImage, maxDimension: CGFloat) -> UIImage {
-        var scaledSize = CGSize(width: maxDimension, height: maxDimension)
-        var scaleFactor: CGFloat
-        if image.size.width > image.size.height {
-            scaleFactor = image.size.width / image.size.height
-            scaledSize.width = maxDimension
-            scaledSize.height = scaledSize.width * scaleFactor
-        } else {
-            scaleFactor = image.size.width / image.size.height
-            scaledSize.height = maxDimension
-            scaledSize.width = scaledSize.height * scaleFactor
-        }
-        
-        UIGraphicsBeginImageContext(scaledSize)
-        image.drawInRect(CGRectMake(0, 0, scaledSize.width, scaledSize.height))
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return scaledImage
-
-    }
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         print("finished")
-        if tesseract != nil {
-            print(recognizeImageText(image))
-        }
-//        tesseract.delegate = self
-//
-//
-//        print(tesseract.recognizedText)
         imageView.image = image
         dismissViewControllerAnimated(true, completion: nil)
         
