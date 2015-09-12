@@ -18,6 +18,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         var tesseract : G8Tesseract = G8Tesseract(language:"eng")
         tesseract.delegate = self
         tesseract.image = UIImage(named: "image_sample.jpg")?.g8_blackAndWhite().g8_grayScale()
@@ -79,11 +80,11 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         return false; // return true if you need to interrupt tesseract before it finishes
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        print("finished")
-        imageView.image = image
-        dismissViewControllerAnimated(true, completion: nil)
-        
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+            print("finished")
+            imageView.image = image
+            dismissViewControllerAnimated(true, completion: nil)
     }
+        
 }
 
