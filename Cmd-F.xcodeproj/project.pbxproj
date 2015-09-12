@@ -13,6 +13,7 @@
 		648C5A8B1BA40DBC0099F96B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C5A8A1BA40DBC0099F96B /* libz.dylib */; };
 		648C5A8F1BA40E600099F96B /* libTesseractOCRiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C5A8E1BA40E600099F96B /* libTesseractOCRiOS.a */; };
 		648C5A911BA40E740099F96B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C5A901BA40E740099F96B /* libPods.a */; };
+		649AF2491BA419BD004576A4 /* image_sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 649AF2481BA419BD004576A4 /* image_sample.jpg */; };
 		959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */; };
 		959900921BA3D63000CFBFB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959900911BA3D63000CFBFB4 /* ViewController.swift */; };
 		959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959900931BA3D63000CFBFB4 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 		648C5A8E1BA40E600099F96B /* libTesseractOCRiOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTesseractOCRiOS.a; path = "Pods/../build/Debug-iphoneos/libTesseractOCRiOS.a"; sourceTree = "<group>"; };
 		648C5A901BA40E740099F96B /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		648C5A921BA40EB30099F96B /* TesseractBridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesseractBridgingHeader.h; sourceTree = "<group>"; };
+		649AF2481BA419BD004576A4 /* image_sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_sample.jpg; sourceTree = "<group>"; };
 		9599008C1BA3D63000CFBFB4 /* Cmd-F.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cmd-F.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		959900911BA3D63000CFBFB4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		9599008E1BA3D63000CFBFB4 /* Cmd-F */ = {
 			isa = PBXGroup;
 			children = (
+				649AF2481BA419BD004576A4 /* image_sample.jpg */,
 				1843C6A41BA410E9008F0FF4 /* HistoryTableViewController.swift */,
 				6443A54A1BA3F0780038513D /* tessdata */,
 				9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */,
@@ -223,6 +226,7 @@
 				6443A54B1BA3F0780038513D /* tessdata in Resources */,
 				959900971BA3D63000CFBFB4 /* Assets.xcassets in Resources */,
 				959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */,
+				649AF2491BA419BD004576A4 /* image_sample.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
