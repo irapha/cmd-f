@@ -20,6 +20,23 @@ class ViewController: UIViewController, G8TesseractDelegate {
         
 //        tesseract
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        let picker = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            print("Woo")
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Photo
+            picker.cameraDevice = UIImagePickerControllerCameraDevice.Rear
+            picker.showsCameraControls = false
+            picker.navigationBarHidden = true
+            picker.toolbarHidden = true
+            self.presentViewController(picker, animated: true, completion: nil)
+            
+        } else {
+            print("doesn't exist")
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
