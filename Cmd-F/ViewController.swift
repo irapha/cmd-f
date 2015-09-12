@@ -16,6 +16,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     
     var tesseract: G8Tesseract?
     var picker: UIImagePickerController?
+    var firstTimeAppearing = true;
     
     
     @IBOutlet var cameraButton: UIButton!
@@ -25,14 +26,27 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let gesture = UITapGestureRecognizer(target: self, action: "presentCamera")
-        self.view.addGestureRecognizer(gesture)
+//        let gesture = UITapGestureRecognizer(target: self, action: "presentCamera")
+//        self.view.addGestureRecognizer(gesture)
         print("init")
 
         
         // Intialize tesseract.
         tesseract = G8Tesseract(language:"eng")
         tesseract!.delegate = self
+        
+        // Swipe up on imageview loads the camera view.
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeUp:")
+        swipeUp.direction = .Up
+        self.view.addGestureRecognizer(swipeUp)
+    }
+    
+    func respondToSwipeUp(gesture: UIGestureRecognizer) {
+        if picker != nil {
+            presentViewController(picker!, animated: true, completion: nil)
+        } else {
+            print("fail")
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -40,8 +54,10 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         print("view loaded")
         
         if picker != nil {
-            presentViewController(picker!, animated: true, completion: nil)
-            
+            if firstTimeAppearing == true {
+                firstTimeAppearing = false;
+                 presentViewController(picker!, animated: true, completion: nil)
+            }
         } else {
             print("fail")
         }
@@ -83,7 +99,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         // Deal with the presentation of the camera view
         if picker != nil {
             presentViewController(picker!, animated: true, completion: nil)
-
         } else {
         }
     }
