@@ -13,12 +13,29 @@ class ViewController: UIViewController, G8TesseractDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        var tesseract:G8Tesseract = G8Tesseract(language:"eng")
+        let tesseract:G8Tesseract = G8Tesseract(language:"eng")
         tesseract.delegate = self
         tesseract.image = UIImage(named: "image_sample.jpg")
         tesseract.recognize()
         
         NSLog("%@", tesseract.recognizedText);
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let picker = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            print("Woo")
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Photo
+            picker.cameraDevice = UIImagePickerControllerCameraDevice.Rear
+            picker.showsCameraControls = false
+            picker.navigationBarHidden = true
+            picker.toolbarHidden = true
+            self.presentViewController(picker, animated: true, completion: nil)
+            
+        } else {
+            print("doesn't exist")
+        }
     }
 
     override func didReceiveMemoryWarning() {
