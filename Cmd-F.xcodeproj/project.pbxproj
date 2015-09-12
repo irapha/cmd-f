@@ -16,6 +16,7 @@
 		649AF2491BA419BD004576A4 /* image_sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 649AF2481BA419BD004576A4 /* image_sample.jpg */; };
 		649AF24B1BA46525004576A4 /* image_sample_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 649AF24A1BA46525004576A4 /* image_sample_2.jpeg */; };
 		649AF24D1BA471F0004576A4 /* GoogleBooksRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */; };
+		956FB2251BA46F4800AA5206 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 956FB2241BA46F4800AA5206 /* OverlayView.xib */; };
 		959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */; };
 		959900921BA3D63000CFBFB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959900911BA3D63000CFBFB4 /* ViewController.swift */; };
 		959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959900931BA3D63000CFBFB4 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		649AF2481BA419BD004576A4 /* image_sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_sample.jpg; sourceTree = "<group>"; };
 		649AF24A1BA46525004576A4 /* image_sample_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_sample_2.jpeg; sourceTree = "<group>"; };
 		649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleBooksRemote.swift; sourceTree = "<group>"; };
+		956FB2241BA46F4800AA5206 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		9599008C1BA3D63000CFBFB4 /* Cmd-F.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cmd-F.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		959900911BA3D63000CFBFB4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */,
 				959900961BA3D63000CFBFB4 /* Assets.xcassets */,
 				9599009B1BA3D63000CFBFB4 /* Info.plist */,
+				956FB2241BA46F4800AA5206 /* OverlayView.xib */,
 			);
 			path = "Cmd-F";
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				TargetAttributes = {
 					9599008B1BA3D63000CFBFB4 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = VZTP2466WH;
 					};
 					9599009F1BA3D63000CFBFB4 = {
 						CreatedOnToolsVersion = 7.0;
@@ -230,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6443A54B1BA3F0780038513D /* tessdata in Resources */,
+				956FB2251BA46F4800AA5206 /* OverlayView.xib in Resources */,
 				959900971BA3D63000CFBFB4 /* Assets.xcassets in Resources */,
 				959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */,
 				649AF24B1BA46525004576A4 /* image_sample_2.jpeg in Resources */,
@@ -305,6 +310,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: raphaelgontijolopes@gmail.com (55S7654347)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -351,6 +357,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: raphaelgontijolopes@gmail.com (55S7654347)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -379,20 +386,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Cmd-F",
 				);
 				INFOPLIST_FILE = "Cmd-F/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "MHackers.Cmd-F";
+				PRODUCT_BUNDLE_IDENTIFIER = MHackers.Highlight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -402,20 +411,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Cmd-F",
 				);
 				INFOPLIST_FILE = "Cmd-F/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "MHackers.Cmd-F";
+				PRODUCT_BUNDLE_IDENTIFIER = MHackers.Highlight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
