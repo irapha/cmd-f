@@ -17,11 +17,17 @@ class ViewController: UIViewController, G8TesseractDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         var tesseract : G8Tesseract = G8Tesseract(language:"eng")
         tesseract.delegate = self
-        tesseract.image = UIImage(named: "image_sample_2.jpeg")?.g8_blackAndWhite().g8_grayScale()
+        tesseract.image = UIImage(named: "image_sample.jpg")?.g8_blackAndWhite().g8_grayScale()
         tesseract.recognize()
         
         mainImageView.image = tesseract.image
         NSLog("%@", tesseract.recognizedText)
+        
+        NSLog("Making simple request")
+        
+        let remote = GoogleBooksRemote()
+        remote.connect("/books/v1/volumes?q=flowers&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
+        
     }
     
     override func viewDidAppear(animated: Bool) {
