@@ -102,6 +102,22 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         return false; // return true if you need to interrupt tesseract before it finishes
     }
     
+    func saveDataToDisk(image: UIImage) -> NSURL? {
+        let manager = NSFileManager.defaultManager()
+
+        let documents = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first!, isDirectory: true)
+        let images = documents.URLByAppendingPathComponent("Images", isDirectory: true)
+        if manager.fileExistsAtPath(images.filePathURL!.absoluteString) {
+            let name = NSProcessInfo().globallyUniqueString + ".png"
+            let imageUrl = images.URLByAppendingPathComponent(name, isDirectory: false)
+            UIImagePNGRepresentation(image)?.writeToURL(imageUrl, atomically: true)
+            return imageUrl
+        } else {
+            return nil
+        }
+    }
+    
+    // TODO modify to save query and image
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         // Do anything that requires the captured image here
         print("Starting tesseract")
