@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */; };
-		1843C6A31BA3FF19008F0FF4 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843C6A21BA3FF19008F0FF4 /* HistoryTableViewController.swift */; };
+		1843C6A51BA410E9008F0FF4 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843C6A41BA410E9008F0FF4 /* HistoryTableViewController.swift */; };
 		6443A54B1BA3F0780038513D /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 6443A54A1BA3F0780038513D /* tessdata */; };
 		959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */; };
 		959900921BA3D63000CFBFB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959900911BA3D63000CFBFB4 /* ViewController.swift */; };
@@ -30,7 +30,7 @@
 		0E8916CE3204882FD4E094FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1580302AEFF375B201AE0852 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryObject.swift; sourceTree = "<group>"; };
-		1843C6A21BA3FF19008F0FF4 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		1843C6A41BA410E9008F0FF4 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		6443A54A1BA3F0780038513D /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		9599008C1BA3D63000CFBFB4 /* Cmd-F.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cmd-F.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,8 +65,6 @@
 		47A36C5546B21505E0470A49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				648C5A8C1BA40DC30099F96B /* libTesseractOCRiOS.a */,
-				648C5A8A1BA40DBC0099F96B /* libz.dylib */,
 				0E8916CE3204882FD4E094FD /* libPods.a */,
 			);
 			name = Frameworks;
@@ -95,6 +93,7 @@
 		9599008E1BA3D63000CFBFB4 /* Cmd-F */ = {
 			isa = PBXGroup;
 			children = (
+				1843C6A41BA410E9008F0FF4 /* HistoryTableViewController.swift */,
 				6443A54A1BA3F0780038513D /* tessdata */,
 				9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */,
 				959900911BA3D63000CFBFB4 /* ViewController.swift */,
@@ -131,11 +130,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 959900B41BA3D63100CFBFB4 /* Build configuration list for PBXNativeTarget "Cmd-F" */;
 			buildPhases = (
-				C2FAAE5914D4779D99D362F5 /* Check Pods Manifest.lock */,
 				959900881BA3D63000CFBFB4 /* Sources */,
 				959900891BA3D63000CFBFB4 /* Frameworks */,
 				9599008A1BA3D63000CFBFB4 /* Resources */,
-				60F4943C63CE2EBA98ABB521 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -227,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1843C6A51BA410E9008F0FF4 /* HistoryTableViewController.swift in Sources */,
 				959900921BA3D63000CFBFB4 /* ViewController.swift in Sources */,
 				1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */,
 				959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */,
