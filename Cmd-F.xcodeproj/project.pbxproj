@@ -27,6 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E8916CE3204882FD4E094FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1580302AEFF375B201AE0852 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryObject.swift; sourceTree = "<group>"; };
 		1843C6A21BA3FF19008F0FF4 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		6443A54A1BA3F0780038513D /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
@@ -39,6 +41,7 @@
 		959900A01BA3D63000CFBFB4 /* Cmd-FTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cmd-FTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		959900AF1BA3D63100CFBFB4 /* Cmd_FUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cmd_FUITests.swift; sourceTree = "<group>"; };
 		959900B11BA3D63100CFBFB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3B65CB029C23BAF487987F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +62,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47A36C5546B21505E0470A49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				648C5A8C1BA40DC30099F96B /* libTesseractOCRiOS.a */,
+				648C5A8A1BA40DBC0099F96B /* libz.dylib */,
+				0E8916CE3204882FD4E094FD /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		959900831BA3D63000CFBFB4 = {
 			isa = PBXGroup;
 			children = (
 				9599008E1BA3D63000CFBFB4 /* Cmd-F */,
 				959900AE1BA3D63100CFBFB4 /* Cmd-FUITests */,
 				9599008D1BA3D63000CFBFB4 /* Products */,
+				BB01D4C2636F9B766ADC403E /* Pods */,
+				47A36C5546B21505E0470A49 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,7 +98,6 @@
 				6443A54A1BA3F0780038513D /* tessdata */,
 				9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */,
 				959900911BA3D63000CFBFB4 /* ViewController.swift */,
-				1843C6A21BA3FF19008F0FF4 /* HistoryTableViewController.swift */,
 				959900931BA3D63000CFBFB4 /* Main.storyboard */,
 				1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */,
 				959900961BA3D63000CFBFB4 /* Assets.xcassets */,
@@ -101,6 +115,15 @@
 			path = "Cmd-FUITests";
 			sourceTree = "<group>";
 		};
+		BB01D4C2636F9B766ADC403E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1580302AEFF375B201AE0852 /* Pods.debug.xcconfig */,
+				A3B65CB029C23BAF487987F9 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -108,9 +131,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 959900B41BA3D63100CFBFB4 /* Build configuration list for PBXNativeTarget "Cmd-F" */;
 			buildPhases = (
+				C2FAAE5914D4779D99D362F5 /* Check Pods Manifest.lock */,
 				959900881BA3D63000CFBFB4 /* Sources */,
 				959900891BA3D63000CFBFB4 /* Frameworks */,
 				9599008A1BA3D63000CFBFB4 /* Resources */,
+				60F4943C63CE2EBA98ABB521 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,7 +227,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1843C6A31BA3FF19008F0FF4 /* HistoryTableViewController.swift in Sources */,
 				959900921BA3D63000CFBFB4 /* ViewController.swift in Sources */,
 				1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */,
 				959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */,
@@ -323,6 +347,7 @@
 		};
 		959900B51BA3D63100CFBFB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1580302AEFF375B201AE0852 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -333,6 +358,10 @@
 				INFOPLIST_FILE = "Cmd-F/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "MHackers.Cmd-F";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -340,6 +369,7 @@
 		};
 		959900B61BA3D63100CFBFB4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3B65CB029C23BAF487987F9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -350,6 +380,10 @@
 				INFOPLIST_FILE = "Cmd-F/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "MHackers.Cmd-F";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
