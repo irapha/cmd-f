@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController" customModule="Cmd_F" customModuleProvider="target">
             <connections>
+                <outlet property="cameraButton" destination="XUe-BE-qJm" id="dt4-I8-Cuu"/>
                 <outlet property="overlayView" destination="iN0-l3-epB" id="VP0-p7-nF2"/>
             </connections>
         </placeholder>
@@ -15,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="7k0-eq-pwu">
+                <searchBar contentMode="redraw" searchBarStyle="prominent" translatesAutoresizingMaskIntoConstraints="NO" id="7k0-eq-pwu">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                     <animations/>
                     <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
@@ -24,13 +25,23 @@
                     <rect key="frame" x="272" y="417" width="57" height="54"/>
                     <animations/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUe-BE-qJm">
+                    <rect key="frame" x="262" y="479" width="77" height="81"/>
+                    <animations/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="cameraButtonAction:" destination="-1" eventType="touchUpInside" id="pYK-2h-MwJ"/>
+                    </connections>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="XUe-BE-qJm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1HW-DC-Hip"/>
                 <constraint firstItem="7k0-eq-pwu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Udi-Dg-hpq"/>
                 <constraint firstAttribute="trailing" secondItem="7k0-eq-pwu" secondAttribute="trailing" id="Yde-5b-9V1"/>
                 <constraint firstItem="7k0-eq-pwu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kas-DO-UKt"/>
+                <constraint firstAttribute="bottom" secondItem="XUe-BE-qJm" secondAttribute="bottom" constant="40" id="nD9-Bv-fWo"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
         </view>
