@@ -10,7 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var overlayView: UIView!
+    @IBOutlet weak var textQuery: UISearchBar!
     
     var tesseract: G8Tesseract?
     var picker: UIImagePickerController?
@@ -29,39 +31,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         // Intialize tesseract.
         tesseract = G8Tesseract(language:"eng")
         tesseract!.delegate = self
-        
-        // Give tesseract a preprocessed UIImage.
-//        tesseract!.image = UIImage(named: "image_sample.jpg")?.g8_grayScale().g8_blackAndWhite()
-        
-        // Recognize cahracters.
-//        tesseract!.recognize()
-//        let recognizedText = tesseract!.recognizedText
-
-//        print(recognizedText)
-        
-        // Find ranges in recognizedText where seachQuery matches. Remove all new lines and spaces from both strings (so that the blocks array correspond one-to-one).
-//        let searchQuery = "museum loaned furniture";
-        
-//        let rangeOfMatch = recognizedText.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "").rangeOfString(searchQuery.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: ""))
-        
-        // Get match start and end index.
-//        let matchStartIndex = recognizedText.startIndex.distanceTo(rangeOfMatch!.startIndex)
-//        let matchEndIndex = recognizedText.startIndex.distanceTo(rangeOfMatch!.endIndex)
-        
-        // Get each character's block
-//        var blocks = tesseract!.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol) as! [G8RecognizedBlock]
-        // Only use blocks that match searchQuery.
-//        let filteredBlocks = Array(blocks[matchStartIndex..<matchEndIndex])
-
-         // Make tesseract display the image with the highlighted blocks.
-//         imageView.image = tesseract!.imageWithBlocks(filteredBlocks, drawText: true, thresholded: false)
-        
-        // How to request information from google books.
-//        let remote = GoogleBooksRemote()
-//        let query = ("/books/v1/volumes?q=" + recognizedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())! + "&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
-//        NSLog("%@", query)
-//        remote.connect(query)
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -126,9 +95,47 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-            print("finished")
-//            imageView.image = image
-            dismissViewControllerAnimated(true, completion: nil)
+        print("Starting tesseract")
+    
+        // Find ranges in recognizedText where seachQuery matches. Remove all new lines and spaces from both strings (so that the blocks array correspond one-to-one).
+        var searchQuery: String
+        
+        if let query = textQuery.text {
+            searchQuery = query
+        } else {
+            searchQuery = ""
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        // Give tesseract a preprocessed UIImage.
+        tesseract!.image = image.g8_grayScale().g8_blackAndWhite()
+        
+        // Recognize characters.
+        tesseract!.recognize()
+        let recognizedText = tesseract!.recognizedText
+        
+        let formattedRecognizedText = recognizedText.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
+        let formattedSearchQuery = searchQuery.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
+        
+        // Get match start and end index.
+        let rangeOfMatch = formattedRecognizedText.rangeOfString(formattedSearchQuery)
+        let matchStartIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch!.startIndex)
+        let matchEndIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch!.endIndex)
+        
+        // Get all recognized character's block
+        var blocks = tesseract!.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol) as! [G8RecognizedBlock]
+        // Only use blocks that match searchQuery.
+        let filteredBlocks = Array(blocks[matchStartIndex..<matchEndIndex])
+        
+        // Make tesseract display the image with the highlighted blocks.
+        imageView.image = tesseract!.imageWithBlocks(filteredBlocks, drawText: true, thresholded: false)
+        
+        // How to request information from google books.
+        //        let remote = GoogleBooksRemote()
+        //        let query = ("/books/v1/volumes?q=" + recognizedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())! + "&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
+        //        NSLog("%@", query)
+        //        remote.connect(query)
     }
         
 }
