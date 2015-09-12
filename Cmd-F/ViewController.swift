@@ -36,6 +36,13 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     override func viewDidAppear(animated: Bool) {
         picker = createCamera()
         print("view loaded")
+        
+        if picker != nil {
+            presentViewController(picker!, animated: true, completion: nil)
+            
+        } else {
+            print("fail")
+        }
     }
     
     func initializeOverlay(picker: UIImagePickerController) {
