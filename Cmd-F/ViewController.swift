@@ -11,8 +11,6 @@ import UIKit
 class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var tesseract: G8Tesseract?
     @IBOutlet var imageView: UIImageView!
-    
-    @IBOutlet weak var mainImageView: UIImageView!
 
     @IBOutlet var overlayView: UIView!
     override func viewDidLoad() {
@@ -24,13 +22,17 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         tesseract.image = UIImage(named: "image_sample.jpg")?.g8_blackAndWhite().g8_grayScale()
         tesseract.recognize()
         
-        mainImageView.image = tesseract.image
-        NSLog("%@", tesseract.recognizedText)
+        // Get each character's block
+        // let blocks = tesseract.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol)
+        // TODO: Filter blocks array to only include the blocks that match the search.
+        // Make tesseract display the image with the highlighted blocks.
+        // imageView.image = tesseract.imageWithBlocks(blocks, drawText: true, thresholded: true)
         
-        NSLog("Making simple request")
+        // NSLog("%@", tesseract.recognizedText)
         
-        let remote = GoogleBooksRemote()
-        remote.connect("/books/v1/volumes?q=flowers&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
+        // How to request information from google books.
+        // let remote = GoogleBooksRemote()
+        // remote.connect("/books/v1/volumes?q=flowers&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
         
     }
     
