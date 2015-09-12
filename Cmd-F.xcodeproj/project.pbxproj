@@ -112,11 +112,13 @@
 		9599008E1BA3D63000CFBFB4 /* Cmd-F */ = {
 			isa = PBXGroup;
 			children = (
+				649AF24A1BA46525004576A4 /* image_sample_2.jpeg */,
 				649AF2481BA419BD004576A4 /* image_sample.jpg */,
 				1843C6A41BA410E9008F0FF4 /* HistoryTableViewController.swift */,
 				6443A54A1BA3F0780038513D /* tessdata */,
 				9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */,
 				959900911BA3D63000CFBFB4 /* ViewController.swift */,
+				649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */,
 				648C5A921BA40EB30099F96B /* TesseractBridgingHeader.h */,
 				959900931BA3D63000CFBFB4 /* Main.storyboard */,
 				1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */,
@@ -230,6 +232,7 @@
 				956FB2251BA46F4800AA5206 /* OverlayView.xib in Resources */,
 				959900971BA3D63000CFBFB4 /* Assets.xcassets in Resources */,
 				959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */,
+				649AF24B1BA46525004576A4 /* image_sample_2.jpeg in Resources */,
 				649AF2491BA419BD004576A4 /* image_sample.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1843C6A51BA410E9008F0FF4 /* HistoryTableViewController.swift in Sources */,
+				649AF24D1BA471F0004576A4 /* GoogleBooksRemote.swift in Sources */,
 				959900921BA3D63000CFBFB4 /* ViewController.swift in Sources */,
 				1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */,
 				959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */,
