@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         var tesseract:G8Tesseract = G8Tesseract(language:"eng")
-        tesseract.delegate = self
+        // tesseract.delegate = self
         
     }
 
