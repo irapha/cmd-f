@@ -13,9 +13,9 @@ class GoogleBooksRemote: NSObject {
     var data = NSMutableData()
     
     func connect(query:NSString) {
-        var url = NSURL(string: ("https://www.googleapis.com" + (query as String)))
-        var request = NSURLRequest(URL: url!)
-        var conn = NSURLConnection(request: request, delegate: self, startImmediately: true)
+        let url = NSURL(string: ("https://www.googleapis.com" + (query as String)))
+        let request = NSURLRequest(URL: url!)
+        let conn = NSURLConnection(request: request, delegate: self, startImmediately: true)
     }
     
     
@@ -29,6 +29,7 @@ class GoogleBooksRemote: NSObject {
     
     func connectionDidFinishLoading(connection: NSURLConnection!) {
         // send self.data
+        print(self.data)
     }
     
     

@@ -10,7 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var overlayView: UIView!
+    @IBOutlet weak var textQuery: UISearchBar!
     
     var tesseract: G8Tesseract?
     var picker: UIImagePickerController?
@@ -23,28 +25,26 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        tesseract = G8Tesseract(language:"eng")
-        tesseract!.delegate = self
         let gesture = UITapGestureRecognizer(target: self, action: "presentCamera")
         self.view.addGestureRecognizer(gesture)
         print("init")
-        // Get each character's block
-        // let blocks = tesseract.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol)
-        // TODO: Filter blocks array to only include the blocks that match the search.
-        // Make tesseract display the image with the highlighted blocks.
-        // imageView.image = tesseract.imageWithBlocks(blocks, drawText: true, thresholded: true)
+
         
-        // NSLog("%@", tesseract.recognizedText)
-        
-        // How to request information from google books.
-        // let remote = GoogleBooksRemote()
-        // remote.connect("/books/v1/volumes?q=flowers&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
-        NSUserDefaults.standardUserDefaults().
+        // Intialize tesseract.
+        tesseract = G8Tesseract(language:"eng")
+        tesseract!.delegate = self
     }
     
     override func viewDidAppear(animated: Bool) {
         picker = createCamera()
         print("view loaded")
+        
+        if picker != nil {
+            presentViewController(picker!, animated: true, completion: nil)
+            
+        } else {
+            print("fail")
+        }
     }
     
     func initializeOverlay(picker: UIImagePickerController) {
@@ -104,7 +104,47 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         // Do anything that requires the captured image here
-            dismissViewControllerAnimated(true, completion: nil)
+        print("Starting tesseract")
+    
+        // Find ranges in recognizedText where seachQuery matches. Remove all new lines and spaces from both strings (so that the blocks array correspond one-to-one).
+        var searchQuery: String
+        
+        if let query = textQuery.text {
+            searchQuery = query
+        } else {
+            searchQuery = ""
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        // Give tesseract a preprocessed UIImage.
+        tesseract!.image = image.g8_grayScale().g8_blackAndWhite()
+        
+        // Recognize characters.
+        tesseract!.recognize()
+        let recognizedText = tesseract!.recognizedText
+        
+        let formattedRecognizedText = recognizedText.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
+        let formattedSearchQuery = searchQuery.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
+        
+        // Get match start and end index.
+        let rangeOfMatch = formattedRecognizedText.rangeOfString(formattedSearchQuery)
+        let matchStartIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch!.startIndex)
+        let matchEndIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch!.endIndex)
+        
+        // Get all recognized character's block
+        var blocks = tesseract!.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol) as! [G8RecognizedBlock]
+        // Only use blocks that match searchQuery.
+        let filteredBlocks = Array(blocks[matchStartIndex..<matchEndIndex])
+        
+        // Make tesseract display the image with the highlighted blocks.
+        imageView.image = tesseract!.imageWithBlocks(filteredBlocks, drawText: true, thresholded: false)
+        
+        // How to request information from google books.
+        //        let remote = GoogleBooksRemote()
+        //        let query = ("/books/v1/volumes?q=" + recognizedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())! + "&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
+        //        NSLog("%@", query)
+        //        remote.connect(query)
     }
         
 }
