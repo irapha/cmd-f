@@ -16,17 +16,27 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let tesseract = G8Tesseract(language:"eng")
-        tesseract.delegate = self
-        tesseract.image = UIImage(named: "image_sample.jpg")?.g8_blackAndWhite().g8_grayScale()
-        tesseract.recognize()
+        // Intialize tesseract.
+        // let tesseract = G8Tesseract(language:"eng")
+        // tesseract.delegate = self
         
-        NSLog("%@", tesseract.recognizedText)
+        // Give tesseract a preprocessed UIImage.
+        // tesseract.image = UIImage(named: "image_sample.jpg")?.g8_blackAndWhite().g8_grayScale()
         
-        NSLog("Making simple request")
+        // Recognize cahracters.
+        // tesseract.recognize()
         
-        let remote = GoogleBooksRemote()
-        remote.connect("/books/v1/volumes?q=flowers&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
+        // Get each character's block
+        // let blocks = tesseract.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol)
+        // TODO: Filter blocks array to only include the blocks that match the search.
+        // Make tesseract display the image with the highlighted blocks.
+        // imageView.image = tesseract.imageWithBlocks(blocks, drawText: true, thresholded: true)
+        
+        // NSLog("%@", tesseract.recognizedText)
+        
+        // How to request information from google books.
+        // let remote = GoogleBooksRemote()
+        // remote.connect("/books/v1/volumes?q=flowers&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
         
     }
     
