@@ -12,19 +12,30 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
 
     @IBOutlet var overlayView: UIView!
     
+    var tesseract: G8Tesseract?
+    var picker: UIImagePickerController?
+    
+    @IBOutlet var cameraButton: UIButton!
+    @IBAction func cameraButtonAction(sender: UIButton) {
+        picker?.takePicture()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        let gesture = UITapGestureRecognizer(target: self, action: "presentCamera")
+        self.view.addGestureRecognizer(gesture)
+        print("init")
         
         // Intialize tesseract.
-//        let tesseract = G8Tesseract(language:"eng")
-//        tesseract.delegate = self
+        tesseract = G8Tesseract(language:"eng")
+        tesseract!.delegate = self
         
         // Give tesseract a preprocessed UIImage.
-//        tesseract.image = UIImage(named: "image_sample.jpg")?.g8_grayScale().g8_blackAndWhite()
+//        tesseract!.image = UIImage(named: "image_sample.jpg")?.g8_grayScale().g8_blackAndWhite()
         
         // Recognize cahracters.
-//        tesseract.recognize()
-//        let recognizedText = tesseract.recognizedText
+//        tesseract!.recognize()
+//        let recognizedText = tesseract!.recognizedText
 
 //        print(recognizedText)
         
@@ -38,12 +49,12 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
 //        let matchEndIndex = recognizedText.startIndex.distanceTo(rangeOfMatch!.endIndex)
         
         // Get each character's block
-//        var blocks = tesseract.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol) as! [G8RecognizedBlock]
+//        var blocks = tesseract!.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol) as! [G8RecognizedBlock]
         // Only use blocks that match searchQuery.
 //        let filteredBlocks = Array(blocks[matchStartIndex..<matchEndIndex])
 
          // Make tesseract display the image with the highlighted blocks.
-//         imageView.image = tesseract.imageWithBlocks(filteredBlocks, drawText: true, thresholded: false)
+//         imageView.image = tesseract!.imageWithBlocks(filteredBlocks, drawText: true, thresholded: false)
         
         // How to request information from google books.
 //        let remote = GoogleBooksRemote()
