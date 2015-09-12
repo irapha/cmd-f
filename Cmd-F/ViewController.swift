@@ -9,8 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    var tesseract: G8Tesseract?
-    @IBOutlet var imageView: UIImageView!
 
     @IBOutlet var overlayView: UIView!
     
@@ -56,40 +54,55 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     }
     
     override func viewDidAppear(animated: Bool) {
-        cameraCreation()
+        picker = createCamera()
         print("view loaded")
     }
     
-    func closeKeyboard() {
-        print("tap recognized!")
-        overlayView.endEditing(false)
+    func initializeOverlay(picker: UIImagePickerController) {
+        NSBundle.mainBundle().loadNibNamed("OverlayView", owner: self, options: nil)
+        let tap = UITapGestureRecognizer(target: self, action: "closeKeyboard")
+        overlayView.addGestureRecognizer(tap)
+        cameraButton.layer.cornerRadius = 0.2 * cameraButton.bounds.size.width
+        cameraButton.backgroundColor = UIColor.whiteColor()
         
-    }
+        overlayView.frame = picker.cameraOverlayView!.frame
+        overlayView.opaque = false
+        overlayView.backgroundColor = UIColor.clearColor()
 
-    func cameraCreation() {
+    }
+    
+    func createCamera() -> UIImagePickerController? {
         let picker = UIImagePickerController()
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             print("Woo")
-            picker.delegate = self as! protocol<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+            picker.delegate = self as protocol<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
             picker.sourceType = UIImagePickerControllerSourceType.Camera
             picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Photo
             picker.cameraDevice = UIImagePickerControllerCameraDevice.Rear
             picker.showsCameraControls = false
             picker.navigationBarHidden = true
             picker.toolbarHidden = true
-            NSBundle.mainBundle().loadNibNamed("OverlayView", owner: self, options: nil)
-            let tap = UITapGestureRecognizer(target: self, action: "closeKeyboard")
-            overlayView.addGestureRecognizer(tap)
-            overlayView.frame = picker.cameraOverlayView!.frame
-            overlayView.opaque = false
-            overlayView.backgroundColor = UIColor.clearColor()
+            initializeOverlay(picker)
             picker.cameraOverlayView = overlayView
-            
-            self.presentViewController(picker, animated: true, completion: nil)
-            
+            return picker
         } else {
-            print("doesn't exist")
+            return nil
         }
+    }
+    
+    func presentCamera() {
+        print("tapp")
+        if picker != nil {
+            presentViewController(picker!, animated: true, completion: nil)
+
+        } else {
+            print("fail")
+        }
+    }
+    
+    func closeKeyboard() {
+        print("tap recognized!")
+        overlayView.endEditing(false)
     }
     
     override func didReceiveMemoryWarning() {
@@ -101,11 +114,11 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         return false; // return true if you need to interrupt tesseract before it finishes
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        print("finished")
-        imageView.image = image
-        dismissViewControllerAnimated(true, completion: nil)
-        
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+            print("finished")
+//            imageView.image = image
+            dismissViewControllerAnimated(true, completion: nil)
     }
+        
 }
 

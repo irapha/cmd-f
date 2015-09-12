@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */; };
 		1843C6A51BA410E9008F0FF4 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843C6A41BA410E9008F0FF4 /* HistoryTableViewController.swift */; };
+		184CEBA01BA4AE3300E790F7 /* TestTheButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184CEB9F1BA4AE3300E790F7 /* TestTheButton.swift */; };
 		6443A54B1BA3F0780038513D /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 6443A54A1BA3F0780038513D /* tessdata */; };
 		648C5A8B1BA40DBC0099F96B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C5A8A1BA40DBC0099F96B /* libz.dylib */; };
 		648C5A8F1BA40E600099F96B /* libTesseractOCRiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C5A8E1BA40E600099F96B /* libTesseractOCRiOS.a */; };
@@ -38,6 +39,8 @@
 		1580302AEFF375B201AE0852 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryObject.swift; sourceTree = "<group>"; };
 		1843C6A41BA410E9008F0FF4 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		184CEB9F1BA4AE3300E790F7 /* TestTheButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTheButton.swift; sourceTree = "<group>"; };
+		18E728CB1BA49A4B00902637 /* Circular Button.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Circular Button.h"; sourceTree = "<group>"; };
 		6443A54A1BA3F0780038513D /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		648C5A8A1BA40DBC0099F96B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		648C5A8C1BA40DC30099F96B /* libTesseractOCRiOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTesseractOCRiOS.a; path = "Pods/../build/Debug-iphoneos/libTesseractOCRiOS.a"; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 				649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */,
 				648C5A921BA40EB30099F96B /* TesseractBridgingHeader.h */,
 				959900931BA3D63000CFBFB4 /* Main.storyboard */,
+				184CEB9F1BA4AE3300E790F7 /* TestTheButton.swift */,
+				18E728CB1BA49A4B00902637 /* Circular Button.h */,
 				1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */,
 				959900961BA3D63000CFBFB4 /* Assets.xcassets */,
 				9599009B1BA3D63000CFBFB4 /* Info.plist */,
@@ -200,7 +205,7 @@
 				TargetAttributes = {
 					9599008B1BA3D63000CFBFB4 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = VZTP2466WH;
+						DevelopmentTeam = H3XP3E955D;
 					};
 					9599009F1BA3D63000CFBFB4 = {
 						CreatedOnToolsVersion = 7.0;
@@ -259,6 +264,7 @@
 				1843C6A51BA410E9008F0FF4 /* HistoryTableViewController.swift in Sources */,
 				649AF24D1BA471F0004576A4 /* GoogleBooksRemote.swift in Sources */,
 				959900921BA3D63000CFBFB4 /* ViewController.swift in Sources */,
+				184CEBA01BA4AE3300E790F7 /* TestTheButton.swift in Sources */,
 				1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */,
 				959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */,
 			);
@@ -399,7 +405,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MHackers.Highlight;
+				PRODUCT_BUNDLE_IDENTIFIER = MHackers.Cmd4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -424,7 +430,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MHackers.Highlight;
+				PRODUCT_BUNDLE_IDENTIFIER = MHackers.Cmd4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
