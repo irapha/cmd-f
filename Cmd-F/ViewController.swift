@@ -15,6 +15,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     var tesseract: G8Tesseract?
     var picker: UIImagePickerController?
     
+    
     @IBOutlet var cameraButton: UIButton!
     @IBAction func cameraButtonAction(sender: UIButton) {
         picker?.takePicture()
@@ -38,7 +39,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         // How to request information from google books.
         // let remote = GoogleBooksRemote()
         // remote.connect("/books/v1/volumes?q=flowers&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
-        
+        NSUserDefaults.standardUserDefaults().
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -79,12 +80,11 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     }
     
     func presentCamera() {
-        print("tapp")
+        // Deal with the presentation of the camera view
         if picker != nil {
             presentViewController(picker!, animated: true, completion: nil)
 
         } else {
-            print("fail")
         }
     }
     
@@ -103,8 +103,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-            print("finished")
-//            imageView.image = image
+        // Do anything that requires the captured image here
             dismissViewControllerAnimated(true, completion: nil)
     }
         
