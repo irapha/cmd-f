@@ -10,25 +10,14 @@
 		1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */; };
 		1843C6A31BA3FF19008F0FF4 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843C6A21BA3FF19008F0FF4 /* HistoryTableViewController.swift */; };
 		6443A54B1BA3F0780038513D /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 6443A54A1BA3F0780038513D /* tessdata */; };
-		6443A54D1BA3F1170038513D /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6443A54C1BA3F1170038513D /* TesseractOCR.framework */; };
 		959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */; };
 		959900921BA3D63000CFBFB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959900911BA3D63000CFBFB4 /* ViewController.swift */; };
 		959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959900931BA3D63000CFBFB4 /* Main.storyboard */; };
 		959900971BA3D63000CFBFB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 959900961BA3D63000CFBFB4 /* Assets.xcassets */; };
-		9599009A1BA3D63000CFBFB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959900981BA3D63000CFBFB4 /* LaunchScreen.storyboard */; };
-		959900A51BA3D63000CFBFB4 /* Cmd_FTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959900A41BA3D63000CFBFB4 /* Cmd_FTests.swift */; };
-		959900B01BA3D63100CFBFB4 /* Cmd_FUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959900AF1BA3D63100CFBFB4 /* Cmd_FUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		959900A11BA3D63000CFBFB4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 959900841BA3D63000CFBFB4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9599008B1BA3D63000CFBFB4;
-			remoteInfo = "Cmd-F";
-		};
-		959900AC1BA3D63100CFBFB4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 959900841BA3D63000CFBFB4 /* Project object */;
 			proxyType = 1;
@@ -41,18 +30,13 @@
 		1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryObject.swift; sourceTree = "<group>"; };
 		1843C6A21BA3FF19008F0FF4 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		6443A54A1BA3F0780038513D /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
-		6443A54C1BA3F1170038513D /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
 		9599008C1BA3D63000CFBFB4 /* Cmd-F.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cmd-F.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		959900911BA3D63000CFBFB4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		959900941BA3D63000CFBFB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		959900961BA3D63000CFBFB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		959900991BA3D63000CFBFB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9599009B1BA3D63000CFBFB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		959900A01BA3D63000CFBFB4 /* Cmd-FTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cmd-FTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		959900A41BA3D63000CFBFB4 /* Cmd_FTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cmd_FTests.swift; sourceTree = "<group>"; };
-		959900A61BA3D63000CFBFB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		959900AB1BA3D63100CFBFB4 /* Cmd-FUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cmd-FUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		959900AF1BA3D63100CFBFB4 /* Cmd_FUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cmd_FUITests.swift; sourceTree = "<group>"; };
 		959900B11BA3D63100CFBFB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,18 +46,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6443A54D1BA3F1170038513D /* TesseractOCR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9599009D1BA3D63000CFBFB4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		959900A81BA3D63100CFBFB4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -87,7 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				9599008E1BA3D63000CFBFB4 /* Cmd-F */,
-				959900A31BA3D63000CFBFB4 /* Cmd-FTests */,
 				959900AE1BA3D63100CFBFB4 /* Cmd-FUITests */,
 				9599008D1BA3D63000CFBFB4 /* Products */,
 			);
@@ -98,7 +73,6 @@
 			children = (
 				9599008C1BA3D63000CFBFB4 /* Cmd-F.app */,
 				959900A01BA3D63000CFBFB4 /* Cmd-FTests.xctest */,
-				959900AB1BA3D63100CFBFB4 /* Cmd-FUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,7 +80,6 @@
 		9599008E1BA3D63000CFBFB4 /* Cmd-F */ = {
 			isa = PBXGroup;
 			children = (
-				6443A54C1BA3F1170038513D /* TesseractOCR.framework */,
 				6443A54A1BA3F0780038513D /* tessdata */,
 				9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */,
 				959900911BA3D63000CFBFB4 /* ViewController.swift */,
@@ -114,19 +87,9 @@
 				959900931BA3D63000CFBFB4 /* Main.storyboard */,
 				1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */,
 				959900961BA3D63000CFBFB4 /* Assets.xcassets */,
-				959900981BA3D63000CFBFB4 /* LaunchScreen.storyboard */,
 				9599009B1BA3D63000CFBFB4 /* Info.plist */,
 			);
 			path = "Cmd-F";
-			sourceTree = "<group>";
-		};
-		959900A31BA3D63000CFBFB4 /* Cmd-FTests */ = {
-			isa = PBXGroup;
-			children = (
-				959900A41BA3D63000CFBFB4 /* Cmd_FTests.swift */,
-				959900A61BA3D63000CFBFB4 /* Info.plist */,
-			);
-			path = "Cmd-FTests";
 			sourceTree = "<group>";
 		};
 		959900AE1BA3D63100CFBFB4 /* Cmd-FUITests */ = {
@@ -176,24 +139,6 @@
 			productReference = 959900A01BA3D63000CFBFB4 /* Cmd-FTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		959900AA1BA3D63100CFBFB4 /* Cmd-FUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 959900BA1BA3D63100CFBFB4 /* Build configuration list for PBXNativeTarget "Cmd-FUITests" */;
-			buildPhases = (
-				959900A71BA3D63100CFBFB4 /* Sources */,
-				959900A81BA3D63100CFBFB4 /* Frameworks */,
-				959900A91BA3D63100CFBFB4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				959900AD1BA3D63100CFBFB4 /* PBXTargetDependency */,
-			);
-			name = "Cmd-FUITests";
-			productName = "Cmd-FUITests";
-			productReference = 959900AB1BA3D63100CFBFB4 /* Cmd-FUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -207,11 +152,6 @@
 						CreatedOnToolsVersion = 7.0;
 					};
 					9599009F1BA3D63000CFBFB4 = {
-						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = H3XP3E955D;
-						TestTargetID = 9599008B1BA3D63000CFBFB4;
-					};
-					959900AA1BA3D63100CFBFB4 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = H3XP3E955D;
 						TestTargetID = 9599008B1BA3D63000CFBFB4;
@@ -233,7 +173,6 @@
 			targets = (
 				9599008B1BA3D63000CFBFB4 /* Cmd-F */,
 				9599009F1BA3D63000CFBFB4 /* Cmd-FTests */,
-				959900AA1BA3D63100CFBFB4 /* Cmd-FUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -243,7 +182,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9599009A1BA3D63000CFBFB4 /* LaunchScreen.storyboard in Resources */,
 				6443A54B1BA3F0780038513D /* tessdata in Resources */,
 				959900971BA3D63000CFBFB4 /* Assets.xcassets in Resources */,
 				959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */,
@@ -251,13 +189,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		9599009E1BA3D63000CFBFB4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		959900A91BA3D63100CFBFB4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -282,15 +213,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				959900A51BA3D63000CFBFB4 /* Cmd_FTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		959900A71BA3D63100CFBFB4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				959900B01BA3D63100CFBFB4 /* Cmd_FUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,11 +224,6 @@
 			target = 9599008B1BA3D63000CFBFB4 /* Cmd-F */;
 			targetProxy = 959900A11BA3D63000CFBFB4 /* PBXContainerItemProxy */;
 		};
-		959900AD1BA3D63100CFBFB4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9599008B1BA3D63000CFBFB4 /* Cmd-F */;
-			targetProxy = 959900AC1BA3D63100CFBFB4 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -316,14 +233,6 @@
 				959900941BA3D63000CFBFB4 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		959900981BA3D63000CFBFB4 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				959900991BA3D63000CFBFB4 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -470,30 +379,6 @@
 			};
 			name = Release;
 		};
-		959900BB1BA3D63100CFBFB4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "Cmd-FUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "MHackers.Cmd-FUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Cmd-F";
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		959900BC1BA3D63100CFBFB4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "Cmd-FUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "MHackers.Cmd-FUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Cmd-F";
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -520,15 +405,6 @@
 			buildConfigurations = (
 				959900B81BA3D63100CFBFB4 /* Debug */,
 				959900B91BA3D63100CFBFB4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		959900BA1BA3D63100CFBFB4 /* Build configuration list for PBXNativeTarget "Cmd-FUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				959900BB1BA3D63100CFBFB4 /* Debug */,
-				959900BC1BA3D63100CFBFB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
