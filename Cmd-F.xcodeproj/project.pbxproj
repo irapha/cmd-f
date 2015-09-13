@@ -11,10 +11,14 @@
 		1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */; };
 		184CEBA01BA4AE3300E790F7 /* TestTheButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184CEB9F1BA4AE3300E790F7 /* TestTheButton.swift */; };
 		18E3339B1BA527C1000C3CD0 /* Highlight Splash Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E3339A1BA527C1000C3CD0 /* Highlight Splash Screen.png */; };
+		18E3339F1BA56D79000C3CD0 /* Highlight Splash Screen 1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E3339C1BA56D79000C3CD0 /* Highlight Splash Screen 1x.png */; };
+		18E333A01BA56D79000C3CD0 /* Highlight Splash Screen 2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E3339D1BA56D79000C3CD0 /* Highlight Splash Screen 2x.png */; };
+		18E333A11BA56D79000C3CD0 /* Highlight Splash Screen Iphone 5 2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E3339E1BA56D79000C3CD0 /* Highlight Splash Screen Iphone 5 2x.png */; };
+		18E333A31BA570B4000C3CD0 /* Highlight Splash Screen Retina HD 55.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E333A21BA570B4000C3CD0 /* Highlight Splash Screen Retina HD 55.png */; };
 		6443A54B1BA3F0780038513D /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 6443A54A1BA3F0780038513D /* tessdata */; };
-		645A3DA31BA50C9D00E8D46C /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A3DA21BA50C9D00E8D46C /* transparent.png */; settings = {ASSET_TAGS = (); }; };
-		645A3DA51BA5120900E8D46C /* Highlight App Icon HiRes.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A3DA41BA5120900E8D46C /* Highlight App Icon HiRes.png */; settings = {ASSET_TAGS = (); }; };
-		645A3DAB1BA52EBB00E8D46C /* animation in Resources */ = {isa = PBXBuildFile; fileRef = 645A3DAA1BA52EBB00E8D46C /* animation */; settings = {ASSET_TAGS = (); }; };
+		645A3DA31BA50C9D00E8D46C /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A3DA21BA50C9D00E8D46C /* transparent.png */; };
+		645A3DA51BA5120900E8D46C /* Highlight App Icon HiRes.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A3DA41BA5120900E8D46C /* Highlight App Icon HiRes.png */; };
+		645A3DAB1BA52EBB00E8D46C /* animation in Resources */ = {isa = PBXBuildFile; fileRef = 645A3DAA1BA52EBB00E8D46C /* animation */; };
 		648C5A8B1BA40DBC0099F96B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C5A8A1BA40DBC0099F96B /* libz.dylib */; };
 		648C5A8F1BA40E600099F96B /* libTesseractOCRiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C5A8E1BA40E600099F96B /* libTesseractOCRiOS.a */; };
 		648C5A911BA40E740099F96B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 648C5A901BA40E740099F96B /* libPods.a */; };
@@ -22,7 +26,7 @@
 		649AF24B1BA46525004576A4 /* image_sample_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 649AF24A1BA46525004576A4 /* image_sample_2.jpeg */; };
 		649AF24D1BA471F0004576A4 /* GoogleBooksRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */; };
 		956FB2251BA46F4800AA5206 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 956FB2241BA46F4800AA5206 /* OverlayView.xib */; };
-		957816D41BA542EB000EBFF0 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957816D31BA542EB000EBFF0 /* HistoryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		957816D41BA542EB000EBFF0 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957816D31BA542EB000EBFF0 /* HistoryViewController.swift */; };
 		959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */; };
 		959900921BA3D63000CFBFB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959900911BA3D63000CFBFB4 /* ViewController.swift */; };
 		959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959900931BA3D63000CFBFB4 /* Main.storyboard */; };
@@ -46,6 +50,10 @@
 		1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryObject.swift; sourceTree = "<group>"; };
 		184CEB9F1BA4AE3300E790F7 /* TestTheButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTheButton.swift; sourceTree = "<group>"; };
 		18E3339A1BA527C1000C3CD0 /* Highlight Splash Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Highlight Splash Screen.png"; path = "../Highlight Splash Screen.png"; sourceTree = "<group>"; };
+		18E3339C1BA56D79000C3CD0 /* Highlight Splash Screen 1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Highlight Splash Screen 1x.png"; sourceTree = "<group>"; };
+		18E3339D1BA56D79000C3CD0 /* Highlight Splash Screen 2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Highlight Splash Screen 2x.png"; sourceTree = "<group>"; };
+		18E3339E1BA56D79000C3CD0 /* Highlight Splash Screen Iphone 5 2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Highlight Splash Screen Iphone 5 2x.png"; sourceTree = "<group>"; };
+		18E333A21BA570B4000C3CD0 /* Highlight Splash Screen Retina HD 55.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Highlight Splash Screen Retina HD 55.png"; sourceTree = "<group>"; };
 		18E728CB1BA49A4B00902637 /* Circular Button.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Circular Button.h"; sourceTree = "<group>"; };
 		6443A54A1BA3F0780038513D /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		645A3DA21BA50C9D00E8D46C /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent.png; sourceTree = "<group>"; };
@@ -129,9 +137,13 @@
 		9599008E1BA3D63000CFBFB4 /* Cmd-F */ = {
 			isa = PBXGroup;
 			children = (
+				18E333A21BA570B4000C3CD0 /* Highlight Splash Screen Retina HD 55.png */,
 				18E3339A1BA527C1000C3CD0 /* Highlight Splash Screen.png */,
 				649AF24A1BA46525004576A4 /* image_sample_2.jpeg */,
 				645A3DA21BA50C9D00E8D46C /* transparent.png */,
+				18E3339C1BA56D79000C3CD0 /* Highlight Splash Screen 1x.png */,
+				18E3339D1BA56D79000C3CD0 /* Highlight Splash Screen 2x.png */,
+				18E3339E1BA56D79000C3CD0 /* Highlight Splash Screen Iphone 5 2x.png */,
 				649AF2481BA419BD004576A4 /* image_sample.jpg */,
 				645A3DA41BA5120900E8D46C /* Highlight App Icon HiRes.png */,
 				645A3DAA1BA52EBB00E8D46C /* animation */,
@@ -256,10 +268,14 @@
 			files = (
 				6443A54B1BA3F0780038513D /* tessdata in Resources */,
 				956FB2251BA46F4800AA5206 /* OverlayView.xib in Resources */,
+				18E333A11BA56D79000C3CD0 /* Highlight Splash Screen Iphone 5 2x.png in Resources */,
+				18E333A01BA56D79000C3CD0 /* Highlight Splash Screen 2x.png in Resources */,
 				645A3DAB1BA52EBB00E8D46C /* animation in Resources */,
 				645A3DA31BA50C9D00E8D46C /* transparent.png in Resources */,
+				18E3339F1BA56D79000C3CD0 /* Highlight Splash Screen 1x.png in Resources */,
 				959900971BA3D63000CFBFB4 /* Assets.xcassets in Resources */,
 				645A3DA51BA5120900E8D46C /* Highlight App Icon HiRes.png in Resources */,
+				18E333A31BA570B4000C3CD0 /* Highlight Splash Screen Retina HD 55.png in Resources */,
 				959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */,
 				649AF24B1BA46525004576A4 /* image_sample_2.jpeg in Resources */,
 				18E3339B1BA527C1000C3CD0 /* Highlight Splash Screen.png in Resources */,
