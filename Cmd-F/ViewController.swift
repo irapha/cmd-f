@@ -69,6 +69,12 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         let up = UISwipeGestureRecognizer(target: self, action: "upSwipe")
         up.direction = .Up
         self.view.addGestureRecognizer(up)
+        syncImages()
+        // Initialize progress animation.
+        createScannerAnimation()
+    }
+    
+    func syncImages() {
         if let array = historyArray, let index = historyArrayIndex {
             let url = array[index].historyImage
             if let data = NSData(contentsOfURL: url) {
@@ -76,8 +82,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
                 imageView.image = image
             }
         }
-        // Initialize progress animation.
-        createScannerAnimation()
     }
     
     func swipeLeft() {
@@ -271,17 +275,20 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         if imageNSURL != nil && searchQuery != nil {
             NewHistoryObject = HistoryObject(text: searchQuery!, url: imageNSURL!)
             let defaults = NSUserDefaults.standardUserDefaults()
-            var historyArray = defaults.objectForKey(HISTORY_KEY) as? [HistoryObject]
-            if historyArray == nil {
+            var array = defaults.objectForKey(HISTORY_KEY) as? [HistoryObject]
+            if array == nil {
                 let arr = [NewHistoryObject]
                 defaults.setObject(arr, forKey: HISTORY_KEY)
             }
             else {
-                historyArray = [NewHistoryObject] + historyArray!
-                defaults.setObject(historyArray, forKey: HISTORY_KEY)
+                array = [NewHistoryObject] + array!
+                print(array)
+                defaults.setObject(array, forKey: HISTORY_KEY)
             }
             defaults.synchronize()
             historyArrayIndex = 0
+        } else {
+            print("url or query missing")
         }
         if let obj = NSUserDefaults.standardUserDefaults().objectForKey(HISTORY_KEY) as? [HistoryObject] {
             print("NSUserDefaults suceeded")
