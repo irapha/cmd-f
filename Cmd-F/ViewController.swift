@@ -23,19 +23,28 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     
     @IBOutlet var cameraButton: UIButton!
     @IBAction func cameraButtonAction(sender: UIButton) {
+        // Start spinner.
+        self.spinner.hidden = false
+        self.spinner.startAnimating()
+        
         picker?.takePicture()
     }
     
     func swipeDown() {
+        dismissViewControllerAnimated(false, completion: nil)
         performSegueWithIdentifier("historySegue", sender: self)
         print("test")
     }
-    
+    var swipeGesture = {
+        let s = UISwipeGestureRecognizer(target: self, action: "swipeDown")
+        swipeUp.direction = .Down
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let tap = UITapGestureRecognizer(target: self, action: "presentCamera")
         self.view.addGestureRecognizer(tap)
+        
         print("init")
         
         // Intialize tesseract.
@@ -43,9 +52,8 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         tesseract!.delegate = self
 
         // Swipe up on imageview loads the camera view.
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeUp:")
-        swipeUp.direction = .Up
-        self.view.addGestureRecognizer(swipeUp)
+        self.view.addGestureRecognizer(swipeGesture)
+        self.animationView.addGestureRecognizer(swipeGesture)
         
         // Initialize progress animation.
         createScannerAnimation()
@@ -72,9 +80,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         NSBundle.mainBundle().loadNibNamed("OverlayView", owner: self, options: nil)
         let tap = UITapGestureRecognizer(target: self, action: "closeKeyboard")
         overlayView.addGestureRecognizer(tap)
-        let swipe = UISwipeGestureRecognizer(target: self, action: "swipeDown")
-        swipe.direction = .Down
-        overlayView.addGestureRecognizer(swipe)
+        overlayView.addGestureRecognizer(swipeGesture)
         cameraButton.layer.cornerRadius = cameraButton.bounds.size.width / 2
         cameraButton.backgroundColor = UIColor.whiteColor()
         
@@ -118,17 +124,21 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     func highlight(selectedChar: CGRect){
         //Draw low-opacity yellow rectangle over character
         
-        var highlightedSpace = CGRect(x: selectedChar.origin.x, y: selectedChar.origin.y, width: selectedChar.width * 2, height: selectedChar.height)
+        let highlightedSpace = CGRect(x: selectedChar.origin.x, y: selectedChar.origin.y, width: selectedChar.width * 2, height: selectedChar.height)
         
-        var context = UIGraphicsGetCurrentContext()
+        let context = UIGraphicsGetCurrentContext()
         
         CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.5)
-        CGContextSetFillColorWithColor(context, UIColor.clearColor().CGColor!)
+        CGContextSetFillColorWithColor(context, UIColor.clearColor().CGColor)
         
         
     }
     
     func presentCamera() {
+        // Stop spinner
+        self.spinner.stopAnimating()
+        self.spinner.hidden = true
+        
         print("tapp")
         if picker != nil {
             presentViewController(picker!, animated: true, completion: nil)
@@ -152,6 +162,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         return false; // return true if you need to interrupt tesseract before it finishes
     }
     func saveDataToDisk(image: UIImage) -> NSURL? {
+        print("starting data writing attempt...")
         let manager = NSFileManager.defaultManager()
         
         let documents = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first!, isDirectory: true)
@@ -160,8 +171,10 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             let name = NSProcessInfo().globallyUniqueString + ".png"
             let imageUrl = images.URLByAppendingPathComponent(name, isDirectory: false)
             UIImagePNGRepresentation(image)?.writeToURL(imageUrl, atomically: true)
+            print("data writing worked")
             return imageUrl
         } else {
+            print("data writing failed")
             return nil
         }
     }
@@ -174,10 +187,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         // Find ranges in recognizedText where seachQuery matches. Remove all new lines and spaces from both strings (so that the blocks array correspond one-to-one).
         var searchQuery = textQuery.text
         
-        // Start spinner.
-        self.spinner.hidden = false
-        self.spinner.startAnimating()
-        
         // Display image.
         imageView.image = image
         
@@ -187,10 +196,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         
         print("dismiss")
         dismissViewControllerAnimated(true, completion: {() -> () in
-            // Stop spinner
-            self.spinner.stopAnimating()
-            self.spinner.hidden = true
-            
             // Start character recognition.
             if searchQuery != nil {
                 self.tesseract(searchQuery!, image: image)
@@ -213,6 +218,12 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             }
             defaults.synchronize()
         }
+        if let obj = NSUserDefaults.standardUserDefaults().objectForKey(HISTORY_KEY) as [HistoryObject] {
+            print("NSUserDefaults suceeded")
+            print(obj.count)
+        } else {
+            print("NSUserDefaults never written")
+        }
     }
     
     func errorAlert(title: String, message: String) {
@@ -227,6 +238,10 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     
     func tesseract(searchQuery: String, image: UIImage!) {
         print("Starting tesseract")
+
+        // Stop spinner
+        self.spinner.stopAnimating()
+        self.spinner.hidden = true
         
         // Give tesseract a preprocessed UIImage.
         tesseract!.image = image.g8_grayScale().g8_blackAndWhite()
@@ -235,30 +250,47 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         // Recognize characters.
         tesseract!.recognize()
         let recognizedText = tesseract!.recognizedText
-        let formattedRecognizedText = recognizedText.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
-        let strippedSearchQuery = searchQuery.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
+        
+        let formattedRecognizedText = recognizedText.lowercaseString.stringByReplacingOccurrencesOfString("\n", withString: "").stringByReplacingOccurrencesOfString(" ", withString: "")
+        
+        let strippedSearchQuery = searchQuery.lowercaseString.stringByReplacingOccurrencesOfString("\n", withString: "").stringByReplacingOccurrencesOfString(" ", withString: "")
         let formattedSearchQuery = strippedSearchQuery
+        
+        var blocks = tesseract!.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol) as! [G8RecognizedBlock]
+        
+        // Create new recoText from blocks characters.
+        var recoText = ""
+        for block in blocks {
+            recoText += block.text.lowercaseString
+        }
+        
         // Get match start and end index.
         if strippedSearchQuery.characters.count > 0 {
-            if let rangeOfMatch = formattedRecognizedText.rangeOfString(formattedSearchQuery) {
-                let matchStartIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch.startIndex)
-                let matchEndIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch.endIndex)
-                var blocks = tesseract!.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol) as! [G8RecognizedBlock]
+            print(recoText)
+            print("\n\n")
+            print(formattedSearchQuery)
+            if let rangeOfMatch = recoText.rangeOfString(formattedSearchQuery) {
+                let matchStartIndex = recoText.startIndex.distanceTo(rangeOfMatch.startIndex)
+                let matchEndIndex = recoText.startIndex.distanceTo(rangeOfMatch.endIndex)
+                
                 // Only use blocks that match searchQuery.
                 let filteredBlocks = Array(blocks[matchStartIndex..<matchEndIndex])
                 
                 // Make tesseract display the image with the highlighted blocks.
                 imageView.image = tesseract!.imageWithBlocks(filteredBlocks, drawText: true, thresholded: false)
                 
-                // Request information from google books.
-                //            let remote = GoogleBooksRemote()
-                //            let query = ("/books/v1/volumes?q=" + recognizedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())! + "&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
-                //            NSLog("%@", query)
-                //            remote.connect(query)
                 animationView.stopAnimating()
             } else {
-                errorAlert("Unknown query", message: "Could not be completed")
+                animationView.stopAnimating()
             }
+            
+            animationView.stopAnimating()
+            
+            // Request information from google books.
+            let remote = GoogleBooksRemote()
+            let query = ("/books/v1/volumes?q=" + recognizedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())! + "&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
+            remote.connect(query)
+            
         } else {
             errorAlert("Unknown query", message: "Could not be completed")
         }
