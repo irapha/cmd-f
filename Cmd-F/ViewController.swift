@@ -21,11 +21,17 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     @IBAction func cameraButtonAction(sender: UIButton) {
         picker?.takePicture()
     }
+    
+    func swipeDown() {
+        performSegueWithIdentifier("historySegue", sender: self)
+        print("test")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let gesture = UITapGestureRecognizer(target: self, action: "presentCamera")
-        self.view.addGestureRecognizer(gesture)
+        let tap = UITapGestureRecognizer(target: self, action: "presentCamera")
+        self.view.addGestureRecognizer(tap)
         print("init")
         
         // Intialize tesseract.
@@ -42,6 +48,9 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         NSBundle.mainBundle().loadNibNamed("OverlayView", owner: self, options: nil)
         let tap = UITapGestureRecognizer(target: self, action: "closeKeyboard")
         overlayView.addGestureRecognizer(tap)
+        let swipe = UISwipeGestureRecognizer(target: self, action: "swipeDown")
+        swipe.direction = .Down
+        overlayView.addGestureRecognizer(swipe)
         cameraButton.layer.cornerRadius = cameraButton.bounds.size.width / 2
         cameraButton.backgroundColor = UIColor.whiteColor()
         
@@ -69,7 +78,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             let imageWidth = floor(Double(screenSize.width) * cameraAspectRatio)
             let scale = CGFloat(ceil((Double(screenSize.height) / imageWidth) * 10.0) / 10.0)
             let translationX = CGFloat(0.0)
-            let translationY = CGFloat(2 * textQuery.bounds.height)
+            let translationY = CGFloat(1 * textQuery.bounds.height)
             
             picker.cameraViewTransform = CGAffineTransformConcat(CGAffineTransformMakeScale(scale, scale)
                 , CGAffineTransformMakeTranslation(translationX, translationY))
@@ -103,22 +112,32 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     func shouldCancelImageRecognitionForTesseract(tesseract: G8Tesseract!) -> Bool {
         return false; // return true if you need to interrupt tesseract before it finishes
     }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        print("Starting tesseract")
-    
-        // Find ranges in recognizedText where seachQuery matches. Remove all new lines and spaces from both strings (so that the blocks array correspond one-to-one).
-        var searchQuery: String
+    func saveDataToDisk(image: UIImage) -> NSURL? {
+        let manager = NSFileManager.defaultManager()
         
-        if let query = textQuery.text {
-            searchQuery = query
+        let documents = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first!, isDirectory: true)
+        let images = documents.URLByAppendingPathComponent("Images", isDirectory: true)
+        if manager.fileExistsAtPath(images.filePathURL!.absoluteString) {
+            let name = NSProcessInfo().globallyUniqueString + ".png"
+            let imageUrl = images.URLByAppendingPathComponent(name, isDirectory: false)
+            UIImagePNGRepresentation(image)?.writeToURL(imageUrl, atomically: true)
+            return imageUrl
         } else {
-            searchQuery = ""
+            return nil
         }
-        var imageNSURL = saveDataToDisk(image)
+    }
+    
+    // DONE modify to save query and image
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        // Do anything that requires the captured image here
+        print("Starting tesseract")
+        
+        // Find ranges in recognizedText where seachQuery matches. Remove all new lines and spaces from both strings (so that the blocks array correspond one-to-one).
+        let searchQuery = textQuery.text
+        let imageNSURL = saveDataToDisk(image)
         var NewHistoryObject: HistoryObject
-        if imageNSURL != nil {
-            NewHistoryObject = HistoryObject(text: searchQuery, url: imageNSURL!)
+        if imageNSURL != nil && searchQuery != nil {
+            NewHistoryObject = HistoryObject(text: searchQuery!, url: imageNSURL!)
             let defaults = NSUserDefaults.standardUserDefaults()
             var historyArray = defaults.objectForKey(HISTORY_KEY) as? [HistoryObject]
             if historyArray == nil {
@@ -132,46 +151,56 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             defaults.synchronize()
         }
         
-        dismissViewControllerAnimated(true, completion: {() -> () in
-            self.tesseract(searchQuery, image: image)
-        })
+        dismissViewControllerAnimated(true, completion:
+            {if searchQuery != nil {
+                self.tesseract(searchQuery!, image: image)
+                }})
     }
-
+    
+    func errorAlert(title: String, message: String) {
+        if #available(iOS 8.0, *) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+        } else {
+            UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK").show()
+        }
+    }
+    
     func tesseract(searchQuery: String, image: UIImage!) {
         print("Starting tesseract")
-
+        
         // Give tesseract a preprocessed UIImage.
         tesseract!.image = image.g8_grayScale().g8_blackAndWhite()
         
         // Recognize characters.
         tesseract!.recognize()
         let recognizedText = tesseract!.recognizedText
+        let formattedRecognizedText = recognizedText.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
+        let formattedSearchQuery = searchQuery.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
         
-        if searchQuery.characters.count > 0 {
-            // TODO: allow recognition of multiple matches.
-            let formattedRecognizedText = recognizedText.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
-            let formattedSearchQuery = searchQuery.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
-            
-            // Get match start and end index.
-            let rangeOfMatch = formattedRecognizedText.rangeOfString(formattedSearchQuery)
-            let matchStartIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch!.startIndex)
-            let matchEndIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch!.endIndex)
-            
-            // Get all recognized character's block
-            var blocks = tesseract!.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol) as! [G8RecognizedBlock]
-            // Only use blocks that match searchQuery.
-            let filteredBlocks = Array(blocks[matchStartIndex..<matchEndIndex])
-            
-            // Make tesseract display the image with the highlighted blocks.
-            imageView.image = tesseract!.imageWithBlocks(filteredBlocks, drawText: true, thresholded: false)
-            
-            // Request information from google books.
-            //            let remote = GoogleBooksRemote()
-            //            let query = ("/books/v1/volumes?q=" + recognizedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())! + "&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
-            //            NSLog("%@", query)
-            //            remote.connect(query)
+        // Get match start and end index.
+        if formattedSearchQuery.characters.count > 0 {
+            if let rangeOfMatch = formattedRecognizedText.rangeOfString(formattedSearchQuery) {
+                let matchStartIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch.startIndex)
+                let matchEndIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch.endIndex)
+                var blocks = tesseract!.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol) as! [G8RecognizedBlock]
+                // Only use blocks that match searchQuery.
+                let filteredBlocks = Array(blocks[matchStartIndex..<matchEndIndex])
+                
+                // Make tesseract display the image with the highlighted blocks.
+                imageView.image = tesseract!.imageWithBlocks(filteredBlocks, drawText: true, thresholded: false)
+                
+                // Request information from google books.
+                //            let remote = GoogleBooksRemote()
+                //            let query = ("/books/v1/volumes?q=" + recognizedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())! + "&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
+                //            NSLog("%@", query)
+                //            remote.connect(query)
+            } else {
+                errorAlert("Unknown query", message: "Could not be completed")
+            }
         } else {
-            // TODO: display a 'warning: no query performed' message.
+            errorAlert("Unknown query", message: "Could not be completed")
         }
     }
 }

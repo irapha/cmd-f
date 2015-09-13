@@ -21,6 +21,7 @@
 		649AF24B1BA46525004576A4 /* image_sample_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 649AF24A1BA46525004576A4 /* image_sample_2.jpeg */; };
 		649AF24D1BA471F0004576A4 /* GoogleBooksRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */; };
 		956FB2251BA46F4800AA5206 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 956FB2241BA46F4800AA5206 /* OverlayView.xib */; };
+		957816D41BA542EB000EBFF0 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957816D31BA542EB000EBFF0 /* HistoryViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */; };
 		959900921BA3D63000CFBFB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959900911BA3D63000CFBFB4 /* ViewController.swift */; };
 		959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959900931BA3D63000CFBFB4 /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 		649AF24A1BA46525004576A4 /* image_sample_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_sample_2.jpeg; sourceTree = "<group>"; };
 		649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleBooksRemote.swift; sourceTree = "<group>"; };
 		956FB2241BA46F4800AA5206 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		957816D31BA542EB000EBFF0 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryViewController.swift; path = ../HistoryViewController.swift; sourceTree = "<group>"; };
 		9599008C1BA3D63000CFBFB4 /* Cmd-F.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cmd-F.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		959900911BA3D63000CFBFB4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				959900911BA3D63000CFBFB4 /* ViewController.swift */,
 				181BF2861BA4E60D0006E39E /* HistoryAlbumViewController.swift */,
 				649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */,
+				957816D31BA542EB000EBFF0 /* HistoryViewController.swift */,
 				648C5A921BA40EB30099F96B /* TesseractBridgingHeader.h */,
 				959900931BA3D63000CFBFB4 /* Main.storyboard */,
 				184CEB9F1BA4AE3300E790F7 /* TestTheButton.swift */,
@@ -214,7 +217,7 @@
 				TargetAttributes = {
 					9599008B1BA3D63000CFBFB4 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = VZTP2466WH;
+						DevelopmentTeam = H3XP3E955D;
 					};
 					9599009F1BA3D63000CFBFB4 = {
 						CreatedOnToolsVersion = 7.0;
@@ -278,6 +281,7 @@
 				184CEBA01BA4AE3300E790F7 /* TestTheButton.swift in Sources */,
 				1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */,
 				959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */,
+				957816D41BA542EB000EBFF0 /* HistoryViewController.swift in Sources */,
 				181BF2871BA4E60D0006E39E /* HistoryAlbumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,13 +415,13 @@
 					"$(PROJECT_DIR)/Cmd-F",
 				);
 				INFOPLIST_FILE = "Cmd-F/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MHackers.Cmd5;
+				PRODUCT_BUNDLE_IDENTIFIER = MHackers.CmdF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -436,13 +440,13 @@
 					"$(PROJECT_DIR)/Cmd-F",
 				);
 				INFOPLIST_FILE = "Cmd-F/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MHackers.Cmd5;
+				PRODUCT_BUNDLE_IDENTIFIER = MHackers.CmdF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

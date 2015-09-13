@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D2134" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,7 +19,16 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uaf-gL-Ite">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuz-tT-m89">
+                                <rect key="frame" x="277" y="329" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="Gvh-3t-l54" kind="presentation" identifier="historySegue" id="mzr-De-Xpo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -28,6 +38,11 @@
                             <constraint firstItem="uaf-gL-Ite" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="exG-dQ-w17"/>
                             <constraint firstItem="uaf-gL-Ite" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rZC-gJ-wPv"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="iuz-tT-m89"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="uaf-gL-Ite" id="VAr-d9-Wh1"/>
@@ -37,50 +52,76 @@
             </objects>
             <point key="canvasLocation" x="438" y="321"/>
         </scene>
-        <!--History Album View Controller-->
-        <scene sceneID="hnb-jG-691">
+        <!--Navigation Controller-->
+        <scene sceneID="UWg-nz-QfS">
             <objects>
-                <viewController id="cfK-lF-Iqm" customClass="HistoryAlbumViewController" customModule="Cmd_F" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="Gvh-3t-l54" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="y1P-CP-3aR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LYl-l6-9Jd" kind="relationship" relationship="rootViewController" id="Atf-Ab-K7M"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lkn-wO-TD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-290" y="1128"/>
+        </scene>
+        <!--History View Controller-->
+        <scene sceneID="rWQ-Xb-Iul">
+            <objects>
+                <viewController id="LYl-l6-9Jd" customClass="HistoryViewController" customModule="Cmd_F" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="LYD-he-8Cu"/>
-                        <viewControllerLayoutGuide type="bottom" id="jfs-b1-kdQ"/>
+                        <viewControllerLayoutGuide type="top" id="14V-Id-pie"/>
+                        <viewControllerLayoutGuide type="bottom" id="lqw-Vg-MyT"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="v0W-60-Nyl">
+                    <view key="view" contentMode="scaleToFill" id="Tey-gL-p5P">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LIO-fJ-Rzh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uk4-Za-uG5">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </scrollView>
+                                <animations/>
+                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr1-JL-kFu">
+                                <rect key="frame" x="277" y="285" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="LYl-l6-9Jd" kind="show" identifier="rightSegue" id="J31-96-346"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VS0-zY-pj1">
+                                <rect key="frame" x="277" y="394" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="LYl-l6-9Jd" kind="show" identifier="leftSegue" id="qZ0-sW-Hlz"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="scrollView" destination="LIO-fJ-Rzh" id="cyt-Km-acx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cf8-5S-hoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1107" y="362"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="rCi-Pf-shp">
-            <objects>
-                <viewController id="Mcs-TC-o65" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="QHy-eO-dbG"/>
-                        <viewControllerLayoutGuide type="bottom" id="dQ3-AF-BMc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8hF-pl-RcW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Dr1-JL-kFu"/>
+                                <exclude reference="VS0-zY-pj1"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="aJd-MJ-Irq"/>
+                    <connections>
+                        <outlet property="imageView" destination="Uk4-Za-uG5" id="0KG-HG-NXy"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1eh-Mn-mly" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xRi-Ok-bMf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="438" y="955"/>
+            <point key="canvasLocation" x="401" y="1151"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Atf-Ab-K7M"/>
+    </inferredMetricsTieBreakers>
 </document>
