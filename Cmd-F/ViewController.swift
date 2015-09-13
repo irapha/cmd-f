@@ -182,7 +182,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     
 
     
-    func highlight(selectedChar: CGRect){
+    func getRect(selectedChar: CGRect){
         //Draw low-opacity yellow rectangle over character
         
         let highlightedSpace = CGRect(x: selectedChar.origin.x, y: selectedChar.origin.y, width: selectedChar.width * 2, height: selectedChar.height)
@@ -191,8 +191,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         
         CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.5)
         CGContextSetFillColorWithColor(context, UIColor.clearColor().CGColor)
-        
-        
+        CGContextFillRect(context, highlightedSpace)
     }
     
     func presentCamera() {
@@ -348,7 +347,32 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
                 // Only use blocks that match searchQuery.
                 let filteredBlocks = Array(blocks[matchStartIndex..<matchEndIndex])
                 // Make tesseract display the image with the highlighted blocks.
-                imageView.image = tesseract!.imageWithBlocks(filteredBlocks, drawText: true, thresholded: false)
+//                imageView.image = tesseract!.imageWithBlocks(filteredBlocks, drawText: false, thresholded: false)
+                
+                UIGraphicsBeginImageContextWithOptions(tesseract!.image.size, false, tesseract!.image.scale)
+                let context = UIGraphicsGetCurrentContext()
+                UIGraphicsPushContext(context!)
+                tesseract!.image.drawInRect(CGRect(origin: CGPointZero, size: tesseract!.image.size))
+                
+                CGContextSetLineWidth(context, 60.0)
+                CGContextSetStrokeColorWithColor(context, UIColor.yellowColor().CGColor)
+                CGContextSetBlendMode(context, CGBlendMode.Overlay)
+                
+                // draw all rectangles.
+                for block in filteredBlocks {
+                    let boundBox = block.boundingBoxAtImageOfSize(tesseract!.image.size)
+                    let rekt = CGRectMake(boundBox.origin.x, boundBox.origin.y, boundBox.size.width, boundBox.size.height)
+                    
+                    CGContextStrokeRect(context, rekt)
+                    
+                }
+                
+                UIGraphicsPopContext()
+                let highlightedImage = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                
+                imageView.image = highlightedImage
+                
                 animationView.stopAnimating()
             } else {
                 animationView.stopAnimating()
