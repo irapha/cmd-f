@@ -27,7 +27,6 @@
 		959900921BA3D63000CFBFB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959900911BA3D63000CFBFB4 /* ViewController.swift */; };
 		959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959900931BA3D63000CFBFB4 /* Main.storyboard */; };
 		959900971BA3D63000CFBFB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 959900961BA3D63000CFBFB4 /* Assets.xcassets */; };
-		95ADF60C1BA55B5300E8BAE5 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ADF60B1BA55B5300E8BAE5 /* CameraController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +70,6 @@
 		959900A01BA3D63000CFBFB4 /* Cmd-FTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cmd-FTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		959900AF1BA3D63100CFBFB4 /* Cmd_FUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cmd_FUITests.swift; sourceTree = "<group>"; };
 		959900B11BA3D63100CFBFB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		95ADF60B1BA55B5300E8BAE5 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		A3B65CB029C23BAF487987F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,7 +138,6 @@
 				6443A54A1BA3F0780038513D /* tessdata */,
 				9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */,
 				959900911BA3D63000CFBFB4 /* ViewController.swift */,
-				95ADF60B1BA55B5300E8BAE5 /* CameraController.swift */,
 				181BF2861BA4E60D0006E39E /* HistoryAlbumViewController.swift */,
 				649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */,
 				957816D31BA542EB000EBFF0 /* HistoryViewController.swift */,
@@ -224,7 +221,7 @@
 				TargetAttributes = {
 					9599008B1BA3D63000CFBFB4 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = H3XP3E955D;
+						DevelopmentTeam = VZTP2466WH;
 					};
 					9599009F1BA3D63000CFBFB4 = {
 						CreatedOnToolsVersion = 7.0;
@@ -290,7 +287,6 @@
 				1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */,
 				959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */,
 				957816D41BA542EB000EBFF0 /* HistoryViewController.swift in Sources */,
-				95ADF60C1BA55B5300E8BAE5 /* CameraController.swift in Sources */,
 				181BF2871BA4E60D0006E39E /* HistoryAlbumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,7 +426,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MHackers.CmdF;
+				PRODUCT_BUNDLE_IDENTIFIER = MHackers.Highlight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -455,7 +451,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MHackers.CmdF;
+				PRODUCT_BUNDLE_IDENTIFIER = MHackers.Highlight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
