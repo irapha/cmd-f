@@ -23,6 +23,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     var swipeGesture: UISwipeGestureRecognizer?
     var swipeUp: UISwipeGestureRecognizer?
     
+    
     @IBOutlet var cameraButton: UIButton!
     @IBAction func cameraButtonAction(sender: UIButton) {
         // Start spinner.
@@ -32,17 +33,22 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         picker?.takePicture()
     }
     
-    func swipeDown() {
-        print("TEEEEST")
-        dismissViewControllerAnimated(false, completion: nil)
-        performSegueWithIdentifier("historySegue", sender: self)
+    var historyArrayIndex: Int?
+    var indexDelta = 0
+    var historyArray: [HistoryObject]? {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.objectForKey(HISTORY_KEY) as? [HistoryObject]
     }
     
+ 
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let tap = UITapGestureRecognizer(target: self, action: "presentCamera")
-        self.view.addGestureRecognizer(tap)
+//        let tap = UITapGestureRecognizer(target: self, action: "presentCamera")
+//        self.view.addGestureRecognizer(tap)
         
         print("init")
         
@@ -50,26 +56,58 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         tesseract = G8Tesseract(language:"eng")
         tesseract!.delegate = self
 
-        swipeGesture = UISwipeGestureRecognizer(target: self, action: "swipeDown")
-        swipeGesture!.direction = .Down
+        
         
         // Swipe up on imageview loads the camera view.
-        swipeUp = UISwipeGestureRecognizer(target: self, action: "presentCamera")
-        swipeUp!.direction = .Up
         
-        self.view.addGestureRecognizer(swipeUp!)
-        self.view.addGestureRecognizer(swipeGesture!)
-        
+        let left = UISwipeGestureRecognizer(target: self, action: "swipeLeft")
+        left.direction = .Left
+        self.view.addGestureRecognizer(left)
+        let right = UISwipeGestureRecognizer(target: self, action: "swipeRight")
+        right.direction = .Right
+        self.view.addGestureRecognizer(right)
+        let up = UISwipeGestureRecognizer(target: self, action: "upSwipe")
+        up.direction = .Up
+        self.view.addGestureRecognizer(up)
+        if let array = historyArray, let index = historyArrayIndex {
+            let url = array[index].historyImage
+            if let data = NSData(contentsOfURL: url) {
+                let image = UIImage(data: data)
+                imageView.image = image
+            }
+        }
         // Initialize progress animation.
         createScannerAnimation()
     }
     
-    func respondToSwipeUp(gesture: UIGestureRecognizer) {
-        if picker != nil {
-            presentViewController(picker!, animated: true, completion: nil)
-        } else {
-            print("fail")
+    func swipeLeft() {
+        if let array = self.historyArray, let index = self.historyArrayIndex {
+            if index + 1 < array.count {
+                indexDelta = 1
+                performSegueWithIdentifier("selfSegue", sender: self)
+            }
         }
+        print("left")
+    }
+    
+    func swipeRight() {
+        if let index = self.historyArrayIndex {
+            if index - 1 > 0 {
+                indexDelta = -1
+                performSegueWithIdentifier("selfSegue", sender: self)
+            }
+        }
+        print("right")
+    }
+    
+    func upSwipe() {
+        presentCamera()
+    }
+    
+    func swipeDownCamera() {
+        dismissViewControllerAnimated(true, completion: nil)
+        historyArrayIndex = -1
+        swipeLeft()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -81,11 +119,23 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         print("view loaded")
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let dest = sender?.destinationViewController as? HistoryViewController {
+            if let index = historyArrayIndex {
+                dest.historyArrayIndex = index + indexDelta
+            }
+        } else {
+            print("wrong view type")
+        }
+    }
+    
     func initializeOverlay(picker: UIImagePickerController) {
         NSBundle.mainBundle().loadNibNamed("OverlayView", owner: self, options: nil)
         let tap = UITapGestureRecognizer(target: self, action: "closeKeyboard")
         overlayView.addGestureRecognizer(tap)
-        overlayView.addGestureRecognizer(swipeGesture!)
+        let downGesture = UISwipeGestureRecognizer(target: self, action: "swipeDownCamera")
+        downGesture.direction = .Down
+        overlayView.addGestureRecognizer(downGesture)
         cameraButton.layer.cornerRadius = cameraButton.bounds.size.width / 2
         cameraButton.backgroundColor = UIColor.whiteColor()
         
@@ -171,10 +221,16 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         
         let documents = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first!, isDirectory: true)
         let images = documents.URLByAppendingPathComponent("Images", isDirectory: true)
+        print(images)
         if manager.fileExistsAtPath(images.filePathURL!.absoluteString) {
             let name = NSProcessInfo().globallyUniqueString + ".png"
             let imageUrl = images.URLByAppendingPathComponent(name, isDirectory: false)
-            UIImagePNGRepresentation(image)?.writeToURL(imageUrl, atomically: true)
+            if let png = UIImagePNGRepresentation(image) {
+                png.writeToURL(imageUrl, atomically: true)
+            } else {
+                print("png creation failed")
+            }
+            
             print("data writing worked")
             return imageUrl
         } else {
@@ -217,10 +273,11 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
                 defaults.setObject(arr, forKey: HISTORY_KEY)
             }
             else {
-                historyArray!.append(NewHistoryObject)
+                historyArray = [NewHistoryObject] + historyArray!
                 defaults.setObject(historyArray, forKey: HISTORY_KEY)
             }
             defaults.synchronize()
+            historyArrayIndex = 0
         }
         if let obj = NSUserDefaults.standardUserDefaults().objectForKey(HISTORY_KEY) as? [HistoryObject] {
             print("NSUserDefaults suceeded")
@@ -228,6 +285,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         } else {
             print("NSUserDefaults never written")
         }
+        
     }
     
     func errorAlert(title: String, message: String) {
@@ -279,7 +337,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
                 
                 // Only use blocks that match searchQuery.
                 let filteredBlocks = Array(blocks[matchStartIndex..<matchEndIndex])
-                
                 // Make tesseract display the image with the highlighted blocks.
 //                imageView.image = tesseract!.imageWithBlocks(filteredBlocks, drawText: false, thresholded: false)
                 
