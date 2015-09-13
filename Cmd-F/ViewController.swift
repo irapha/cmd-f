@@ -339,28 +339,42 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         
         // Get match start and end index.
         if strippedSearchQuery.characters.count > 0 {
+            
             print(recoText)
             print("\n\n")
             print(formattedSearchQuery)
-            if let rangeOfMatch = recoText.rangeOfString(formattedSearchQuery) {
-                let matchStartIndex = recoText.startIndex.distanceTo(rangeOfMatch.startIndex)
-                let matchEndIndex = recoText.startIndex.distanceTo(rangeOfMatch.endIndex)
-                
-                // Only use blocks that match searchQuery.
-                let filteredBlocks = Array(blocks[matchStartIndex..<matchEndIndex])
-                // Make tesseract display the image with the highlighted blocks.
-//                imageView.image = tesseract!.imageWithBlocks(filteredBlocks, drawText: false, thresholded: false)
-                
-                UIGraphicsBeginImageContextWithOptions(tesseract!.image.size, false, tesseract!.image.scale)
-                let context = UIGraphicsGetCurrentContext()
-                UIGraphicsPushContext(context!)
-                tesseract!.image.drawInRect(CGRect(origin: CGPointZero, size: tesseract!.image.size))
-                
-                CGContextSetLineWidth(context, 60.0)
-                CGContextSetStrokeColorWithColor(context, UIColor.yellowColor().CGColor)
-                CGContextSetBlendMode(context, CGBlendMode.Overlay)
-                
-                // draw all rectangles.
+            
+            var filteredBlocksList: [[G8RecognizedBlock]] = []
+            var currSearchRange = recoText.rangeOfString(recoText)
+
+            while currSearchRange!.startIndex.distanceTo(currSearchRange!.endIndex) > 1 {
+                if let rangeOfMatch = recoText.rangeOfString(formattedSearchQuery, options: NSStringCompareOptions.LiteralSearch, range: currSearchRange, locale: nil) {
+                    
+                    print("wtfff")
+                    
+                    let matchStartIndex = recoText.startIndex.distanceTo(rangeOfMatch.startIndex)
+                    let matchEndIndex = recoText.startIndex.distanceTo(rangeOfMatch.endIndex)
+                    
+                    // Only use blocks that match searchQuery.
+                    filteredBlocksList.append(Array(blocks[(matchStartIndex+5)..<(matchEndIndex+5)]))
+                    
+                    currSearchRange = rangeOfMatch.endIndex..<recoText.endIndex
+                } else {
+                    currSearchRange = currSearchRange!.endIndex..<currSearchRange!.endIndex
+                }
+            }
+            
+            UIGraphicsBeginImageContextWithOptions(tesseract!.image.size, false, tesseract!.image.scale)
+            let context = UIGraphicsGetCurrentContext()
+            UIGraphicsPushContext(context!)
+            tesseract!.image.drawInRect(CGRect(origin: CGPointZero, size: tesseract!.image.size))
+            
+            CGContextSetLineWidth(context, 60.0)
+            CGContextSetStrokeColorWithColor(context, UIColor.yellowColor().CGColor)
+            CGContextSetBlendMode(context, CGBlendMode.Overlay)
+            
+            // draw all rectangles.
+            for filteredBlocks in filteredBlocksList {
                 for block in filteredBlocks {
                     let boundBox = block.boundingBoxAtImageOfSize(tesseract!.image.size)
                     let rekt = CGRectMake(boundBox.origin.x, boundBox.origin.y, boundBox.size.width, boundBox.size.height)
@@ -368,20 +382,20 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
                     CGContextStrokeRect(context, rekt)
                     
                 }
-                
-                UIGraphicsPopContext()
-                let highlightedImage = UIGraphicsGetImageFromCurrentImageContext()
-                UIGraphicsEndImageContext()
-                
-                imageView.image = highlightedImage
-                
-                animationView.stopAnimating()
-            } else {
-                animationView.stopAnimating()
             }
+            
+            UIGraphicsPopContext()
+            let highlightedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            imageView.image = highlightedImage
+            
+            animationView.stopAnimating()
             
             // Request information from google books.
             let remote = GoogleBooksRemote()
+            print("recognized text:")
+            print(recognizedText!)
             let query = ("/books/v1/volumes?q=" + recognizedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())! + "&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
             remote.connect(query)
             

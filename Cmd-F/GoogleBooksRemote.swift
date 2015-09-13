@@ -13,6 +13,8 @@ class GoogleBooksRemote: NSObject {
     var data = NSMutableData()
     
     func connect(query:NSString) {
+        print("creating request to...")
+        print(query)
         let url = NSURL(string: ("https://www.googleapis.com" + (query as String)))
         let request = NSURLRequest(URL: url!)
         let conn = NSURLConnection(request: request, delegate: self, startImmediately: true)
@@ -32,7 +34,7 @@ class GoogleBooksRemote: NSObject {
         
         print("did finish getting data.")
         
-        print(jsonData.string)
+        print(jsonData.enumerate())
         
         if let firstBookName = jsonData["items"][0]["volumeInfo"]["title"].string {
             print("First book name:")
