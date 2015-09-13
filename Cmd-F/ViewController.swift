@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 let HISTORY_KEY = "history key"
 class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -78,6 +79,27 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         } else {
             return nil
         }
+    }
+    
+
+    
+    func highlight(selectedChar: CGRect){
+        //Draw low-opacity yellow rectangle over character
+        
+        var highlightedSpace: CGRect
+        
+        highlightedSpace.origin = selectedChar.origin
+        
+        highlightedSpace.height == selectedChar.height
+        highlightedSpace.width == selectedChar.width * 2
+        
+        var context: CGContextRef
+        context = UIGraphicsGetCurrentContext()
+        
+        CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.5)
+        CGContextSetFillColorWithColor(context, UIColor.clearColor().CGColor!)
+        
+        
     }
     
     func presentCamera() {
