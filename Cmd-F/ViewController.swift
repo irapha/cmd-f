@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+let HISTORY_KEY = "history key"
 class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
@@ -145,6 +145,25 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         } else {
             searchQuery = ""
         }
+        var imageNSURL = saveDataToDisk(image)
+        var NewHistoryObject: HistoryObject
+        if imageNSURL != nil {
+            NewHistoryObject = HistoryObject(text: searchQuery, url: imageNSURL!)
+            let defaults = NSUserDefaults.standardUserDefaults()
+            var historyArray = defaults.objectForKey(HISTORY_KEY) as? [HistoryObject]
+            if historyArray == nil {
+                let arr = [NewHistoryObject]
+                defaults.setObject(arr, forKey: HISTORY_KEY)
+            }
+            else {
+                historyArray!.append(NewHistoryObject)
+                defaults.setObject(historyArray, forKey: HISTORY_KEY)
+            }
+            defaults.synchronize()
+        }
+        
+        
+        
         
         dismissViewControllerAnimated(true, completion: nil)
         

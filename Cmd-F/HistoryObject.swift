@@ -11,18 +11,25 @@ import Foundation
 
 class HistoryObject: NSObject, NSCoding {
     
-    var historyCellText: String
-    var historyCellImage: NSURL
+    var historyText: String
+    var historyImage: NSURL
+    
+    init(text: String, url: NSURL) {
+        historyText = text
+        historyImage = url
+    }
     
     required init(coder decoder: NSCoder) {
         
-        self.historyCellImage =  decoder.decodeObjectForKey("historyCellText") as! NSURL
-        self.historyCellText = decoder.decodeObjectForKey("historyCellImage") as! String
+        self.historyImage =  decoder.decodeObjectForKey("historyText") as! NSURL
+        self.historyText = decoder.decodeObjectForKey("historyImage") as! String
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.historyCellText, forKey: "historyCellText")
-        aCoder.encodeObject(self.historyCellImage, forKey: "historyCellImage")
+        aCoder.encodeObject(self.historyText, forKey: "historyText")
+        aCoder.encodeObject(self.historyImage, forKey: "historyImage")
     }
+    
+    
     
 }
