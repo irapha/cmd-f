@@ -20,6 +20,8 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     var tesseract: G8Tesseract?
     var picker: UIImagePickerController?
     var isFirstTime = true
+    var swipeGesture: UISwipeGestureRecognizer?
+    var swipeUp: UISwipeGestureRecognizer?
     
     @IBOutlet var cameraButton: UIButton!
     @IBAction func cameraButtonAction(sender: UIButton) {
@@ -31,14 +33,11 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     }
     
     func swipeDown() {
+        print("TEEEEST")
         dismissViewControllerAnimated(false, completion: nil)
         performSegueWithIdentifier("historySegue", sender: self)
-        print("test")
     }
-    var swipeGesture = {
-        let s = UISwipeGestureRecognizer(target: self, action: "swipeDown")
-        swipeUp.direction = .Down
-    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -51,9 +50,15 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         tesseract = G8Tesseract(language:"eng")
         tesseract!.delegate = self
 
+        swipeGesture = UISwipeGestureRecognizer(target: self, action: "swipeDown")
+        swipeGesture!.direction = .Down
+        
         // Swipe up on imageview loads the camera view.
-        self.view.addGestureRecognizer(swipeGesture)
-        self.animationView.addGestureRecognizer(swipeGesture)
+        swipeUp = UISwipeGestureRecognizer(target: self, action: "presentCamera")
+        swipeUp!.direction = .Up
+        
+        self.view.addGestureRecognizer(swipeUp!)
+        self.view.addGestureRecognizer(swipeGesture!)
         
         // Initialize progress animation.
         createScannerAnimation()
@@ -80,7 +85,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         NSBundle.mainBundle().loadNibNamed("OverlayView", owner: self, options: nil)
         let tap = UITapGestureRecognizer(target: self, action: "closeKeyboard")
         overlayView.addGestureRecognizer(tap)
-        overlayView.addGestureRecognizer(swipeGesture)
+        overlayView.addGestureRecognizer(swipeGesture!)
         cameraButton.layer.cornerRadius = cameraButton.bounds.size.width / 2
         cameraButton.backgroundColor = UIColor.whiteColor()
         
@@ -218,7 +223,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             }
             defaults.synchronize()
         }
-        if let obj = NSUserDefaults.standardUserDefaults().objectForKey(HISTORY_KEY) as [HistoryObject] {
+        if let obj = NSUserDefaults.standardUserDefaults().objectForKey(HISTORY_KEY) as? [HistoryObject] {
             print("NSUserDefaults suceeded")
             print(obj.count)
         } else {
