@@ -29,7 +29,7 @@
                                 <animations/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="Gvh-3t-l54" kind="presentation" identifier="historySegue" animates="NO" id="mzr-De-Xpo"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="selfSegue" id="rio-CJ-gUe"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -47,6 +47,8 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="06b-Gz-k44"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="animationView" destination="5oV-jZ-aAR" id="jdf-7H-oZd"/>
                         <outlet property="imageView" destination="uaf-gL-Ite" id="VAr-d9-Wh1"/>
@@ -97,7 +99,7 @@
                         <animations/>
                     </navigationBar>
                     <connections>
-                        <segue destination="LYl-l6-9Jd" kind="relationship" relationship="rootViewController" id="Atf-Ab-K7M"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="hjn-Jq-dbt"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lkn-wO-TD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -164,6 +166,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Atf-Ab-K7M"/>
+        <segue reference="hjn-Jq-dbt"/>
     </inferredMetricsTieBreakers>
 </document>
