@@ -22,6 +22,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     var isFirstTime = true
     var swipeGesture: UISwipeGestureRecognizer?
     var swipeUp: UISwipeGestureRecognizer?
+    var swipeDown: UISwipeGestureRecognizerDirection?
     
     
     @IBOutlet var cameraButton: UIButton!
