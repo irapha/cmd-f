@@ -19,6 +19,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     
     var tesseract: G8Tesseract?
     var picker: UIImagePickerController?
+    var isFirstTime = true
     
     @IBOutlet var cameraButton: UIButton!
     @IBAction func cameraButtonAction(sender: UIButton) {
@@ -60,6 +61,10 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     
     override func viewDidAppear(animated: Bool) {
         picker = createCamera()
+        if isFirstTime {
+            isFirstTime = false
+            presentCamera()
+        }
         print("view loaded")
     }
     
