@@ -345,8 +345,9 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
                 UIGraphicsPushContext(context!)
                 tesseract!.image.drawInRect(CGRect(origin: CGPointZero, size: tesseract!.image.size))
                 
-                CGContextSetLineWidth(context, 10.0)
+                CGContextSetLineWidth(context, 60.0)
                 CGContextSetStrokeColorWithColor(context, UIColor.yellowColor().CGColor)
+                CGContextSetBlendMode(context, CGBlendMode.Overlay)
                 
                 // draw all rectangles.
                 for block in filteredBlocks {
