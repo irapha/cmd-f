@@ -35,12 +35,16 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         performSegueWithIdentifier("historySegue", sender: self)
         print("test")
     }
-    
+    var swipeGesture = {
+        let s = UISwipeGestureRecognizer(target: self, action: "swipeDown")
+        swipeUp.direction = .Down
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let tap = UITapGestureRecognizer(target: self, action: "presentCamera")
         self.view.addGestureRecognizer(tap)
+        
         print("init")
         
         // Intialize tesseract.
@@ -48,9 +52,8 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         tesseract!.delegate = self
 
         // Swipe up on imageview loads the camera view.
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: "swipeUp")
-        swipeUp.direction = .Up
-        self.view.addGestureRecognizer(swipeUp)
+        self.view.addGestureRecognizer(swipeGesture)
+        self.animationView.addGestureRecognizer(swipeGesture)
         
         // Initialize progress animation.
         createScannerAnimation()
@@ -77,9 +80,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         NSBundle.mainBundle().loadNibNamed("OverlayView", owner: self, options: nil)
         let tap = UITapGestureRecognizer(target: self, action: "closeKeyboard")
         overlayView.addGestureRecognizer(tap)
-        let swipe = UISwipeGestureRecognizer(target: self, action: "swipeDown")
-        swipe.direction = .Down
-        overlayView.addGestureRecognizer(swipe)
+        overlayView.addGestureRecognizer(swipeGesture)
         cameraButton.layer.cornerRadius = cameraButton.bounds.size.width / 2
         cameraButton.backgroundColor = UIColor.whiteColor()
         
@@ -161,6 +162,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         return false; // return true if you need to interrupt tesseract before it finishes
     }
     func saveDataToDisk(image: UIImage) -> NSURL? {
+        print("starting data writing attempt...")
         let manager = NSFileManager.defaultManager()
         
         let documents = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first!, isDirectory: true)
@@ -169,8 +171,10 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             let name = NSProcessInfo().globallyUniqueString + ".png"
             let imageUrl = images.URLByAppendingPathComponent(name, isDirectory: false)
             UIImagePNGRepresentation(image)?.writeToURL(imageUrl, atomically: true)
+            print("data writing worked")
             return imageUrl
         } else {
+            print("data writing failed")
             return nil
         }
     }
@@ -213,6 +217,12 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
                 defaults.setObject(historyArray, forKey: HISTORY_KEY)
             }
             defaults.synchronize()
+        }
+        if let obj = NSUserDefaults.standardUserDefaults().objectForKey(HISTORY_KEY) as [HistoryObject] {
+            print("NSUserDefaults suceeded")
+            print(obj.count)
+        } else {
+            print("NSUserDefaults never written")
         }
     }
     

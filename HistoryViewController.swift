@@ -14,16 +14,16 @@ class HistoryViewController: UIViewController {
     var historyArrayIndex: Int?
     var historyArray: [HistoryObject]? {
         let defaults = NSUserDefaults.standardUserDefaults()
-        return defaults.objectForKey(HISTORY_KEY) as?[HistoryObject]
+        return defaults.objectForKey(HISTORY_KEY) as [HistoryObject]
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let array = historyArray {
-            print("NSUserDefaults worked!")
+            print("NSUserDefaults array exists in history!")
             print("length \(array.count)")
         } else {
-            print("NSUserDefaults failed")
+            print("NSUserDefaults array doesn't exist")
         }
         
         let left = UISwipeGestureRecognizer(target: self, action: "swipeLeft")
