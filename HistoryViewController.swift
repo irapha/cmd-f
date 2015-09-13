@@ -14,7 +14,7 @@ class HistoryViewController: UIViewController {
     var historyArrayIndex: Int?
     var historyArray: [HistoryObject]? {
         let defaults = NSUserDefaults.standardUserDefaults()
-        return defaults.objectForKey(HISTORY_KEY) as [HistoryObject]
+        return defaults.objectForKey(HISTORY_KEY) as? [HistoryObject]
     }
     override func viewDidLoad() {
         super.viewDidLoad()

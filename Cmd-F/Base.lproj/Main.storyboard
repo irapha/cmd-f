@@ -29,7 +29,7 @@
                                 <animations/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="Gvh-3t-l54" kind="presentation" identifier="historySegue" modalTransitionStyle="coverVertical" id="mzr-De-Xpo"/>
+                                    <segue destination="Gvh-3t-l54" kind="presentation" identifier="historySegue" animates="NO" id="mzr-De-Xpo"/>
                                 </connections>
                             </button>
                         </subviews>

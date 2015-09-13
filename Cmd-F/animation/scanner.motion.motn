@@ -60,7 +60,7 @@
 	<show3DIntersectionAntialiasing>0</show3DIntersectionAntialiasing>
 	<cameraType>0</cameraType>
 	<cameraName>Active Camera</cameraName>
-	<panZoom camera="0" zoom="0.90457106623304939" panX="952.49602063980763" panY="120.01473328633092" mode="1" centered="0"/>
+	<panZoom camera="0" zoom="0.90457106623304939" panX="963.44199858992738" panY="-71.585112154611423" mode="1" centered="0"/>
 </viewer>
 
 <projectPanel>
@@ -121,7 +121,7 @@
 <scene>
 	<sceneSettings>
 		<width>516</width>
-		<height>800</height>
+		<height>1000</height>
 		<duration>600</duration>
 		<shouldOverrideFCDuration>0</shouldOverrideFCDuration>
 		<frameRate>60</frameRate>
@@ -146,7 +146,7 @@
 	<publishSettings>
 		<version>2</version>
 	</publishSettings>
-	<currentFrame>126126 120000 1 0</currentFrame>
+	<currentFrame>162162 120000 1 0</currentFrame>
 	<currentObject>10000</currentObject>
 	<activeLayer>10003</activeLayer>
 	<timeRange offset="0 1 1 0" duration="1201200 120000 1 0"/>
