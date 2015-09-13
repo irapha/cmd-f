@@ -28,8 +28,16 @@ class GoogleBooksRemote: NSObject {
     }
     
     func connectionDidFinishLoading(connection: NSURLConnection!) {
-        // send self.data
-        print(self.data)
+        let jsonData = JSON(data: self.data)
+        
+        print("did finish getting data.")
+        
+        print(jsonData.string)
+        
+        if let firstBookName = jsonData["items"][0]["volumeInfo"]["title"].string {
+            print("First book name:")
+            print(firstBookName)
+        }
     }
     
     
