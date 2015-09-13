@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D2134" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -56,12 +57,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="472" y="219"/>
+            <point key="canvasLocation" x="910" y="135"/>
         </scene>
-        <!--View Controller-->
+        <!--Google Books Controller-->
         <scene sceneID="nfI-fb-d4f">
             <objects>
-                <viewController id="5BI-Qr-uH9" sceneMemberID="viewController">
+                <viewController id="5BI-Qr-uH9" customClass="GoogleBooksController" customModule="Cmd_F" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Adx-hN-2wQ"/>
                         <viewControllerLayoutGuide type="bottom" id="q98-Nz-mIm"/>
@@ -70,22 +71,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5dz-O9-L0r">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dz-O9-L0r">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="74"/>
+                                <animations/>
                                 <items>
                                     <navigationItem title="[Book Title] by [Author]" prompt="Possible Matches Found in" id="lVm-Wo-JdA"/>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baN-Q7-g5I">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baN-Q7-g5I">
                                 <rect key="frame" x="24" y="0.0" width="145" height="74"/>
+                                <animations/>
                             </imageView>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AaG-e5-p6j">
+                                <rect key="frame" x="0.0" y="74" width="600" height="526"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="526" id="IZZ-K8-85K"/>
+                                </constraints>
+                            </webView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="AaG-e5-p6j" secondAttribute="trailing" id="26R-Sl-egh"/>
+                            <constraint firstItem="AaG-e5-p6j" firstAttribute="top" secondItem="5dz-O9-L0r" secondAttribute="bottom" id="Zde-jr-Qbf"/>
+                            <constraint firstItem="AaG-e5-p6j" firstAttribute="bottom" secondItem="q98-Nz-mIm" secondAttribute="top" id="eyH-BE-4Jn"/>
+                            <constraint firstItem="AaG-e5-p6j" firstAttribute="trailing" secondItem="5dz-O9-L0r" secondAttribute="trailing" id="h8a-SI-d05"/>
+                            <constraint firstItem="AaG-e5-p6j" firstAttribute="leading" secondItem="5dz-O9-L0r" secondAttribute="leading" id="iC5-cP-yhI"/>
+                            <constraint firstItem="AaG-e5-p6j" firstAttribute="top" secondItem="baN-Q7-g5I" secondAttribute="bottom" id="ikD-eJ-MLq"/>
+                            <constraint firstItem="AaG-e5-p6j" firstAttribute="leading" secondItem="5OC-tO-WGE" secondAttribute="leading" id="kzw-3N-oCD"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="navBarImage" destination="baN-Q7-g5I" id="dao-WY-2O3"/>
+                        <outlet property="navItem" destination="lVm-Wo-JdA" id="Z4V-ep-dI5"/>
+                        <outlet property="webView" destination="AaG-e5-p6j" id="jnq-qu-j7x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJ4-KV-ggO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="401" y="1837"/>
+            <point key="canvasLocation" x="421" y="913"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UWg-nz-QfS">
@@ -104,65 +130,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lkn-wO-TD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-290" y="1128"/>
-        </scene>
-        <!--History View Controller-->
-        <scene sceneID="rWQ-Xb-Iul">
-            <objects>
-                <viewController id="LYl-l6-9Jd" customClass="HistoryViewController" customModule="Cmd_F" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="14V-Id-pie"/>
-                        <viewControllerLayoutGuide type="bottom" id="lqw-Vg-MyT"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Tey-gL-p5P">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uk4-Za-uG5">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                            </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr1-JL-kFu">
-                                <rect key="frame" x="277" y="285" width="46" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="LYl-l6-9Jd" kind="show" identifier="rightSegue" id="J31-96-346"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VS0-zY-pj1">
-                                <rect key="frame" x="277" y="394" width="46" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="LYl-l6-9Jd" kind="show" identifier="leftSegue" id="qZ0-sW-Hlz"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="Dr1-JL-kFu"/>
-                                <exclude reference="VS0-zY-pj1"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <navigationItem key="navigationItem" id="aJd-MJ-Irq">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="EKy-W6-Szo">
-                            <connections>
-                                <segue destination="BYZ-38-t0r" kind="showDetail" identifier="backSwipe" id="Sch-Jf-qnj"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="imageView" destination="Uk4-Za-uG5" id="0KG-HG-NXy"/>
-                        <segue destination="5BI-Qr-uH9" kind="show" id="gLU-VL-fOh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xRi-Ok-bMf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="401" y="1151"/>
+            <point key="canvasLocation" x="-224" y="258"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
