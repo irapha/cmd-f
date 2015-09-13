@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+let HISTORY_KEY = "history key"
 class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
@@ -18,6 +18,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     var picker: UIImagePickerController?
     var firstTimeAppearing = true;
     
+    
     @IBOutlet var cameraButton: UIButton!
     @IBAction func cameraButtonAction(sender: UIButton) {
         picker?.takePicture()
@@ -25,6 +26,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     override func viewDidLoad() {
         super.viewDidLoad()
         print("init")
+
         
         // Intialize tesseract.
         tesseract = G8Tesseract(language:"eng")
@@ -97,11 +99,10 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     }
     
     func presentCamera() {
-        print("tapp")
+        // Deal with the presentation of the camera view
         if picker != nil {
             presentViewController(picker!, animated: true, completion: nil)
         } else {
-            print("fail")
         }
     }
     
@@ -119,7 +120,26 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         return false; // return true if you need to interrupt tesseract before it finishes
     }
     
+    func saveDataToDisk(image: UIImage) -> NSURL? {
+        let manager = NSFileManager.defaultManager()
+
+        let documents = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first!, isDirectory: true)
+        let images = documents.URLByAppendingPathComponent("Images", isDirectory: true)
+        if manager.fileExistsAtPath(images.filePathURL!.absoluteString) {
+            let name = NSProcessInfo().globallyUniqueString + ".png"
+            let imageUrl = images.URLByAppendingPathComponent(name, isDirectory: false)
+            UIImagePNGRepresentation(image)?.writeToURL(imageUrl, atomically: true)
+            return imageUrl
+        } else {
+            return nil
+        }
+    }
+    
+    // TODO modify to save query and image
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        // Do anything that requires the captured image here
+        print("Starting tesseract")
+    
         // Find ranges in recognizedText where seachQuery matches. Remove all new lines and spaces from both strings (so that the blocks array correspond one-to-one).
         var searchQuery: String
         
@@ -127,6 +147,22 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             searchQuery = query
         } else {
             searchQuery = ""
+        }
+        var imageNSURL = saveDataToDisk(image)
+        var NewHistoryObject: HistoryObject
+        if imageNSURL != nil {
+            NewHistoryObject = HistoryObject(text: searchQuery, url: imageNSURL!)
+            let defaults = NSUserDefaults.standardUserDefaults()
+            var historyArray = defaults.objectForKey(HISTORY_KEY) as? [HistoryObject]
+            if historyArray == nil {
+                let arr = [NewHistoryObject]
+                defaults.setObject(arr, forKey: HISTORY_KEY)
+            }
+            else {
+                historyArray!.append(NewHistoryObject)
+                defaults.setObject(historyArray, forKey: HISTORY_KEY)
+            }
+            defaults.synchronize()
         }
         
         dismissViewControllerAnimated(true, completion: {() -> () in
