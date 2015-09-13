@@ -44,6 +44,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         // Do any additional setup after loading the view, typically from a nib.
         let tap = UITapGestureRecognizer(target: self, action: "presentCamera")
         self.view.addGestureRecognizer(tap)
+        
         print("init")
         
         // Intialize tesseract.
@@ -52,6 +53,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
 
         // Swipe up on imageview loads the camera view.
         self.view.addGestureRecognizer(swipeGesture)
+        self.animationView.addGestureRecognizer(swipeGesture)
         
         // Initialize progress animation.
         createScannerAnimation()
