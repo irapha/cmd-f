@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 let HISTORY_KEY = "history key"
 class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -18,8 +19,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     
     var tesseract: G8Tesseract?
     var picker: UIImagePickerController?
-    var firstTimeAppearing = true;
-    
     
     @IBOutlet var cameraButton: UIButton!
     @IBAction func cameraButtonAction(sender: UIButton) {
@@ -27,6 +26,9 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        let gesture = UITapGestureRecognizer(target: self, action: "presentCamera")
+        self.view.addGestureRecognizer(gesture)
         print("init")
         
         // Intialize tesseract.
@@ -53,11 +55,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     override func viewDidAppear(animated: Bool) {
         picker = createCamera()
         print("view loaded")
-        
-        if firstTimeAppearing == true {
-            firstTimeAppearing = false;
-            presentCamera()
-        }
     }
     
     func initializeOverlay(picker: UIImagePickerController) {
@@ -102,11 +99,34 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         }
     }
     
+
+    
+    func highlight(selectedChar: CGRect){
+        //Draw low-opacity yellow rectangle over character
+        
+        var highlightedSpace: CGRect
+        
+        highlightedSpace.origin = selectedChar.origin
+        
+        highlightedSpace.height == selectedChar.height
+        highlightedSpace.width == selectedChar.width * 2
+        
+        var context: CGContextRef
+        context = UIGraphicsGetCurrentContext()
+        
+        CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.5)
+        CGContextSetFillColorWithColor(context, UIColor.clearColor().CGColor!)
+        
+        
+    }
+    
     func presentCamera() {
-        // Deal with the presentation of the camera view
+        print("tapp")
         if picker != nil {
             presentViewController(picker!, animated: true, completion: nil)
+
         } else {
+            print("fail")
         }
     }
     
@@ -124,24 +144,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         return false; // return true if you need to interrupt tesseract before it finishes
     }
     
-    func saveDataToDisk(image: UIImage) -> NSURL? {
-        let manager = NSFileManager.defaultManager()
-
-        let documents = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first!, isDirectory: true)
-        let images = documents.URLByAppendingPathComponent("Images", isDirectory: true)
-        if manager.fileExistsAtPath(images.filePathURL!.absoluteString) {
-            let name = NSProcessInfo().globallyUniqueString + ".png"
-            let imageUrl = images.URLByAppendingPathComponent(name, isDirectory: false)
-            UIImagePNGRepresentation(image)?.writeToURL(imageUrl, atomically: true)
-            return imageUrl
-        } else {
-            return nil
-        }
-    }
-    
-    // TODO modify to save query and image
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        // Do anything that requires the captured image here
         print("Starting tesseract")
     
         // Find ranges in recognizedText where seachQuery matches. Remove all new lines and spaces from both strings (so that the blocks array correspond one-to-one).

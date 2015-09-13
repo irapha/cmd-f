@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class HistoryObject: NSObject, NSCoding {
     
     var historyText: String
