@@ -10,6 +10,7 @@
 		181BF2871BA4E60D0006E39E /* HistoryAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BF2861BA4E60D0006E39E /* HistoryAlbumViewController.swift */; };
 		1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */; };
 		184CEBA01BA4AE3300E790F7 /* TestTheButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184CEB9F1BA4AE3300E790F7 /* TestTheButton.swift */; };
+		18E3339B1BA527C1000C3CD0 /* Highlight Splash Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E3339A1BA527C1000C3CD0 /* Highlight Splash Screen.png */; };
 		6443A54B1BA3F0780038513D /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 6443A54A1BA3F0780038513D /* tessdata */; };
 		645A3DA31BA50C9D00E8D46C /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A3DA21BA50C9D00E8D46C /* transparent.png */; settings = {ASSET_TAGS = (); }; };
 		645A3DA51BA5120900E8D46C /* Highlight App Icon HiRes.png in Resources */ = {isa = PBXBuildFile; fileRef = 645A3DA41BA5120900E8D46C /* Highlight App Icon HiRes.png */; settings = {ASSET_TAGS = (); }; };
@@ -42,6 +43,7 @@
 		181BF2861BA4E60D0006E39E /* HistoryAlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryAlbumViewController.swift; sourceTree = "<group>"; };
 		1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryObject.swift; sourceTree = "<group>"; };
 		184CEB9F1BA4AE3300E790F7 /* TestTheButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTheButton.swift; sourceTree = "<group>"; };
+		18E3339A1BA527C1000C3CD0 /* Highlight Splash Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Highlight Splash Screen.png"; path = "../Highlight Splash Screen.png"; sourceTree = "<group>"; };
 		18E728CB1BA49A4B00902637 /* Circular Button.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Circular Button.h"; sourceTree = "<group>"; };
 		6443A54A1BA3F0780038513D /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		645A3DA21BA50C9D00E8D46C /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent.png; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		9599008E1BA3D63000CFBFB4 /* Cmd-F */ = {
 			isa = PBXGroup;
 			children = (
+				18E3339A1BA527C1000C3CD0 /* Highlight Splash Screen.png */,
 				649AF24A1BA46525004576A4 /* image_sample_2.jpeg */,
 				645A3DA21BA50C9D00E8D46C /* transparent.png */,
 				649AF2481BA419BD004576A4 /* image_sample.jpg */,
@@ -251,6 +254,7 @@
 				645A3DA51BA5120900E8D46C /* Highlight App Icon HiRes.png in Resources */,
 				959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */,
 				649AF24B1BA46525004576A4 /* image_sample_2.jpeg in Resources */,
+				18E3339B1BA527C1000C3CD0 /* Highlight Splash Screen.png in Resources */,
 				649AF2491BA419BD004576A4 /* image_sample.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
