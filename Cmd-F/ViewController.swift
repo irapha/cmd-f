@@ -107,7 +107,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             let imageWidth = floor(Double(screenSize.width) * cameraAspectRatio)
             let scale = CGFloat(ceil((Double(screenSize.height) / imageWidth) * 10.0) / 10.0)
             let translationX = CGFloat(0.0)
-            let translationY = CGFloat(1 * textQuery.bounds.height)
+            let translationY = CGFloat(textQuery.bounds.height)
             
             picker.cameraViewTransform = CGAffineTransformConcat(CGAffineTransformMakeScale(scale, scale)
                 , CGAffineTransformMakeTranslation(translationX, translationY))
@@ -274,8 +274,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
                 animationView.stopAnimating()
             }
             
-            animationView.stopAnimating()
-            
             // Request information from google books.
             let remote = GoogleBooksRemote()
             let query = ("/books/v1/volumes?q=" + recognizedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())! + "&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
@@ -309,6 +307,8 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         animationView.animationImages = animationImages
         animationView.animationDuration = 3
         animationView.animationRepeatCount = 0
+        
+        animationView.transform = CGAffineTransformMakeScale(CGFloat(1), CGFloat(1.2))
     }
 }
 
