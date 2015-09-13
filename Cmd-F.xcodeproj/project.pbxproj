@@ -25,6 +25,8 @@
 		649AF2491BA419BD004576A4 /* image_sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 649AF2481BA419BD004576A4 /* image_sample.jpg */; };
 		649AF24B1BA46525004576A4 /* image_sample_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 649AF24A1BA46525004576A4 /* image_sample_2.jpeg */; };
 		649AF24D1BA471F0004576A4 /* GoogleBooksRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */; };
+		9516F77D1BA587B9002E6110 /* GoogleBooksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9516F77C1BA587B9002E6110 /* GoogleBooksController.swift */; settings = {ASSET_TAGS = (); }; };
+		9516F77F1BA58A4C002E6110 /* GooglePreviewPage.html in Resources */ = {isa = PBXBuildFile; fileRef = 9516F77E1BA58A4C002E6110 /* GooglePreviewPage.html */; settings = {ASSET_TAGS = (); }; };
 		956FB2251BA46F4800AA5206 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 956FB2241BA46F4800AA5206 /* OverlayView.xib */; };
 		957816D41BA542EB000EBFF0 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957816D31BA542EB000EBFF0 /* HistoryViewController.swift */; };
 		959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */; };
@@ -67,6 +69,8 @@
 		649AF2481BA419BD004576A4 /* image_sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_sample.jpg; sourceTree = "<group>"; };
 		649AF24A1BA46525004576A4 /* image_sample_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_sample_2.jpeg; sourceTree = "<group>"; };
 		649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleBooksRemote.swift; sourceTree = "<group>"; };
+		9516F77C1BA587B9002E6110 /* GoogleBooksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleBooksController.swift; sourceTree = "<group>"; };
+		9516F77E1BA58A4C002E6110 /* GooglePreviewPage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GooglePreviewPage.html; sourceTree = "<group>"; };
 		956FB2241BA46F4800AA5206 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		957816D31BA542EB000EBFF0 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryViewController.swift; path = ../HistoryViewController.swift; sourceTree = "<group>"; };
 		9599008C1BA3D63000CFBFB4 /* Cmd-F.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cmd-F.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,9 +159,11 @@
 				957816D31BA542EB000EBFF0 /* HistoryViewController.swift */,
 				648C5A921BA40EB30099F96B /* TesseractBridgingHeader.h */,
 				959900931BA3D63000CFBFB4 /* Main.storyboard */,
+				9516F77C1BA587B9002E6110 /* GoogleBooksController.swift */,
+				9516F77E1BA58A4C002E6110 /* GooglePreviewPage.html */,
+				1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */,
 				184CEB9F1BA4AE3300E790F7 /* TestTheButton.swift */,
 				18E728CB1BA49A4B00902637 /* Circular Button.h */,
-				1843C6A01BA3FA65008F0FF4 /* HistoryObject.swift */,
 				959900961BA3D63000CFBFB4 /* Assets.xcassets */,
 				9599009B1BA3D63000CFBFB4 /* Info.plist */,
 				956FB2241BA46F4800AA5206 /* OverlayView.xib */,
@@ -277,6 +283,7 @@
 				645A3DA51BA5120900E8D46C /* Highlight App Icon HiRes.png in Resources */,
 				18E333A31BA570B4000C3CD0 /* Highlight Splash Screen Retina HD 55.png in Resources */,
 				959900951BA3D63000CFBFB4 /* Main.storyboard in Resources */,
+				9516F77F1BA58A4C002E6110 /* GooglePreviewPage.html in Resources */,
 				649AF24B1BA46525004576A4 /* image_sample_2.jpeg in Resources */,
 				18E3339B1BA527C1000C3CD0 /* Highlight Splash Screen.png in Resources */,
 				649AF2491BA419BD004576A4 /* image_sample.jpg in Resources */,
@@ -302,6 +309,7 @@
 				184CEBA01BA4AE3300E790F7 /* TestTheButton.swift in Sources */,
 				1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */,
 				959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */,
+				9516F77D1BA587B9002E6110 /* GoogleBooksController.swift in Sources */,
 				957816D41BA542EB000EBFF0 /* HistoryViewController.swift in Sources */,
 				181BF2871BA4E60D0006E39E /* HistoryAlbumViewController.swift in Sources */,
 			);
