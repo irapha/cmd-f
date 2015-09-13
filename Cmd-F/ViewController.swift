@@ -27,6 +27,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     }
     
     func swipeDown() {
+        dismissViewControllerAnimated(false, completion: nil)
         performSegueWithIdentifier("historySegue", sender: self)
         print("test")
     }
@@ -43,7 +44,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         tesseract!.delegate = self
 
         // Swipe up on imageview loads the camera view.
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeUp:")
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: "swipeUp")
         swipeUp.direction = .Up
         self.view.addGestureRecognizer(swipeUp)
         
