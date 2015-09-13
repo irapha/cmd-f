@@ -10,6 +10,7 @@ import UIKit
 let HISTORY_KEY = "history key"
 class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var animationView: UIImageView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var overlayView: UIView!
@@ -27,7 +28,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     override func viewDidLoad() {
         super.viewDidLoad()
         print("init")
-
         
         // Intialize tesseract.
         tesseract = G8Tesseract(language:"eng")
@@ -37,6 +37,9 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeUp:")
         swipeUp.direction = .Up
         self.view.addGestureRecognizer(swipeUp)
+        
+        // Initialize progress animation.
+        createScannerAnimation()
     }
     
     func respondToSwipeUp(gesture: UIGestureRecognizer) {
@@ -149,6 +152,28 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         } else {
             searchQuery = ""
         }
+        
+        // Start spinner.
+        self.spinner.hidden = false
+        self.spinner.startAnimating()
+        
+        // Display image.
+        imageView.image = image
+        
+        print("animate")
+        // Start loading animation.
+        animationView.startAnimating()
+        
+        print("dismiss")
+        dismissViewControllerAnimated(true, completion: {() -> () in
+            // Stop spinner
+            self.spinner.stopAnimating()
+            self.spinner.hidden = true
+            
+            // Start character recognition.
+            self.tesseract(searchQuery, image: image)
+        })
+        
         var imageNSURL = saveDataToDisk(image)
         var NewHistoryObject: HistoryObject
         if imageNSURL != nil {
@@ -165,16 +190,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             }
             defaults.synchronize()
         }
-        
-        // Display image.
-        imageView.image = image
-        
-        // Start loading animation.
-        createScannerAnimation()
-        
-        dismissViewControllerAnimated(true, completion: {() -> () in
-            self.tesseract(searchQuery, image: image)
-        })
     }
 
     func tesseract(searchQuery: String, image: UIImage!) {
@@ -213,7 +228,7 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             
             print("stopping animation")
             // Stop progress animation.
-            destroyAnimation()
+            animationView.stopAnimating()
             
             // Request information from google books.
             //            let remote = GoogleBooksRemote()
@@ -248,11 +263,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         animationView.animationImages = animationImages
         animationView.animationDuration = 3
         animationView.animationRepeatCount = 0
-        animationView.startAnimating()
-    }
-    
-    func destroyAnimation() {
-        animationView.stopAnimating()
     }
 }
 
