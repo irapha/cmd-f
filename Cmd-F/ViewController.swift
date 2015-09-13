@@ -10,6 +10,7 @@ import UIKit
 let HISTORY_KEY = "history key"
 class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var animationView: UIImageView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var overlayView: UIView!
     @IBOutlet weak var textQuery: UISearchBar!
@@ -165,6 +166,12 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             defaults.synchronize()
         }
         
+        // Display image.
+        imageView.image = image
+        
+        // Start loading animation.
+        createScannerAnimation()
+        
         dismissViewControllerAnimated(true, completion: {() -> () in
             self.tesseract(searchQuery, image: image)
         })
@@ -172,31 +179,41 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
 
     func tesseract(searchQuery: String, image: UIImage!) {
         print("Starting tesseract")
-
+        
         // Give tesseract a preprocessed UIImage.
         tesseract!.image = image.g8_grayScale().g8_blackAndWhite()
         
+        print("Running OCR")
         // Recognize characters.
         tesseract!.recognize()
         let recognizedText = tesseract!.recognizedText
         
         if searchQuery.characters.count > 0 {
+            print("formatting")
             // TODO: allow recognition of multiple matches.
             let formattedRecognizedText = recognizedText.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
             let formattedSearchQuery = searchQuery.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
             
+            print("Search matching")
             // Get match start and end index.
             let rangeOfMatch = formattedRecognizedText.rangeOfString(formattedSearchQuery)
             let matchStartIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch!.startIndex)
             let matchEndIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch!.endIndex)
             
+            print("Recognizing blocks")
             // Get all recognized character's block
             var blocks = tesseract!.recognizedBlocksByIteratorLevel(G8PageIteratorLevel.Symbol) as! [G8RecognizedBlock]
+            print("filtering blocks")
             // Only use blocks that match searchQuery.
             let filteredBlocks = Array(blocks[matchStartIndex..<matchEndIndex])
             
+            print("setting image")
             // Make tesseract display the image with the highlighted blocks.
             imageView.image = tesseract!.imageWithBlocks(filteredBlocks, drawText: true, thresholded: false)
+            
+            print("stopping animation")
+            // Stop progress animation.
+            destroyAnimation()
             
             // Request information from google books.
             //            let remote = GoogleBooksRemote()
@@ -206,6 +223,36 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         } else {
             // TODO: display a 'warning: no query performed' message.
         }
+    }
+    
+    func createScannerAnimation() {
+        print("starting animation")
+        
+        var animationImages: [UIImage] = []
+        
+        for i in 1..<122 {
+            var imgName: String
+            
+            if i < 10 {
+                imgName = "animation/scanner_img_sequence/frame-00000" + String(i) + ".png"
+            } else if i < 100 {
+                imgName = "animation/scanner_img_sequence/frame-0000" + String(i) + ".png"
+            } else {
+                imgName = "animation/scanner_img_sequence/frame-000" + String(i) + ".png"
+            }
+            
+            let frame = UIImage(named: imgName)!
+            animationImages.append(frame)
+        }
+        
+        animationView.animationImages = animationImages
+        animationView.animationDuration = 3
+        animationView.animationRepeatCount = 0
+        animationView.startAnimating()
+    }
+    
+    func destroyAnimation() {
+        animationView.stopAnimating()
     }
 }
 
