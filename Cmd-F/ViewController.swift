@@ -113,18 +113,18 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     func highlight(selectedChar: CGRect){
         //Draw low-opacity yellow rectangle over character
         
-        var highlightedSpace: CGRect
+//        var highlightedSpace: CGRect
         
-        highlightedSpace.origin = selectedChar.origin
+//        highlightedSpace.origin = selectedChar.origin
         
-        highlightedSpace.height == selectedChar.height
-        highlightedSpace.width == selectedChar.width * 2
+//        highlightedSpace.height == selectedChar.height
+//        highlightedSpace.width == selectedChar.width * 2
         
-        var context: CGContextRef
-        context = UIGraphicsGetCurrentContext()
+//        var context: CGContextRef
+//        context = UIGraphicsGetCurrentContext()
         
-        CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.5)
-        CGContextSetFillColorWithColor(context, UIColor.clearColor().CGColor!)
+//        CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.5)
+//        CGContextSetFillColorWithColor(context, UIColor.clearColor().CGColor!)
         
         
     }
@@ -193,7 +193,9 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             self.spinner.hidden = true
             
             // Start character recognition.
-            self.tesseract(searchQuery, image: image)
+            if searchQuery != nil {
+                self.tesseract(searchQuery!, image: image)
+            }
         })
         
         var imageNSURL = saveDataToDisk(image)
@@ -257,7 +259,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
                 animationView.stopAnimating()
             } else {
                 errorAlert("Unknown query", message: "Could not be completed")
-            }
             }
         } else {
             errorAlert("Unknown query", message: "Could not be completed")
