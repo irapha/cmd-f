@@ -119,18 +119,12 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
     func highlight(selectedChar: CGRect){
         //Draw low-opacity yellow rectangle over character
         
-//        var highlightedSpace: CGRect
+        var highlightedSpace = CGRect(x: selectedChar.origin.x, y: selectedChar.origin.y, width: selectedChar.width * 2, height: selectedChar.height)
         
-//        highlightedSpace.origin = selectedChar.origin
+        var context = UIGraphicsGetCurrentContext()
         
-//        highlightedSpace.height == selectedChar.height
-//        highlightedSpace.width == selectedChar.width * 2
-        
-//        var context: CGContextRef
-//        context = UIGraphicsGetCurrentContext()
-        
-//        CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.5)
-//        CGContextSetFillColorWithColor(context, UIColor.clearColor().CGColor!)
+        CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.5)
+        CGContextSetFillColorWithColor(context, UIColor.clearColor().CGColor!)
         
         
     }
