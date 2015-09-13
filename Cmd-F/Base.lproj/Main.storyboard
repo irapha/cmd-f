@@ -67,6 +67,17 @@
                     <view key="view" contentMode="scaleToFill" id="5OC-tO-WGE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5dz-O9-L0r">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="74"/>
+                                <items>
+                                    <navigationItem title="[Book Title] by [Author]" prompt="Possible Matches Found in" id="lVm-Wo-JdA"/>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baN-Q7-g5I">
+                                <rect key="frame" x="24" y="0.0" width="145" height="74"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
