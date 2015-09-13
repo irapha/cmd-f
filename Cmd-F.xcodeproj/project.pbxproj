@@ -221,7 +221,7 @@
 				TargetAttributes = {
 					9599008B1BA3D63000CFBFB4 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = H3XP3E955D;
+						DevelopmentTeam = VZTP2466WH;
 					};
 					9599009F1BA3D63000CFBFB4 = {
 						CreatedOnToolsVersion = 7.0;
@@ -426,7 +426,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MHackers.CmdF;
+				PRODUCT_BUNDLE_IDENTIFIER = MHackers.Highlight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -451,7 +451,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MHackers.CmdF;
+				PRODUCT_BUNDLE_IDENTIFIER = MHackers.Highlight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
