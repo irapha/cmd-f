@@ -42,9 +42,6 @@ class HistoryViewController: UIViewController {
                 let image = UIImage(data: data)
                 imageView.image = image
             }
-        
-        
-        // Do any additional setup after loading the view.
         }
     }
     
