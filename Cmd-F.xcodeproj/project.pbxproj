@@ -25,6 +25,7 @@
 		649AF2491BA419BD004576A4 /* image_sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 649AF2481BA419BD004576A4 /* image_sample.jpg */; };
 		649AF24B1BA46525004576A4 /* image_sample_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 649AF24A1BA46525004576A4 /* image_sample_2.jpeg */; };
 		649AF24D1BA471F0004576A4 /* GoogleBooksRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */; };
+		64D675CB1BA5894D00D7AD94 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D675CA1BA5894D00D7AD94 /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
 		956FB2251BA46F4800AA5206 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 956FB2241BA46F4800AA5206 /* OverlayView.xib */; };
 		957816D41BA542EB000EBFF0 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957816D31BA542EB000EBFF0 /* HistoryViewController.swift */; };
 		959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9599008F1BA3D63000CFBFB4 /* AppDelegate.swift */; };
@@ -67,6 +68,7 @@
 		649AF2481BA419BD004576A4 /* image_sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_sample.jpg; sourceTree = "<group>"; };
 		649AF24A1BA46525004576A4 /* image_sample_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_sample_2.jpeg; sourceTree = "<group>"; };
 		649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleBooksRemote.swift; sourceTree = "<group>"; };
+		64D675CA1BA5894D00D7AD94 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		956FB2241BA46F4800AA5206 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		957816D31BA542EB000EBFF0 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryViewController.swift; path = ../HistoryViewController.swift; sourceTree = "<group>"; };
 		9599008C1BA3D63000CFBFB4 /* Cmd-F.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cmd-F.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 				649AF24C1BA471F0004576A4 /* GoogleBooksRemote.swift */,
 				957816D31BA542EB000EBFF0 /* HistoryViewController.swift */,
 				648C5A921BA40EB30099F96B /* TesseractBridgingHeader.h */,
+				64D675CA1BA5894D00D7AD94 /* SwiftyJSON.swift */,
 				959900931BA3D63000CFBFB4 /* Main.storyboard */,
 				184CEB9F1BA4AE3300E790F7 /* TestTheButton.swift */,
 				18E728CB1BA49A4B00902637 /* Circular Button.h */,
@@ -300,6 +303,7 @@
 				649AF24D1BA471F0004576A4 /* GoogleBooksRemote.swift in Sources */,
 				959900921BA3D63000CFBFB4 /* ViewController.swift in Sources */,
 				184CEBA01BA4AE3300E790F7 /* TestTheButton.swift in Sources */,
+				64D675CB1BA5894D00D7AD94 /* SwiftyJSON.swift in Sources */,
 				1843C6A11BA3FA65008F0FF4 /* HistoryObject.swift in Sources */,
 				959900901BA3D63000CFBFB4 /* AppDelegate.swift in Sources */,
 				957816D41BA542EB000EBFF0 /* HistoryViewController.swift in Sources */,

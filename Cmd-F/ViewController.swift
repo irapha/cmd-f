@@ -85,7 +85,11 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             if index + 1 < array.count {
                 indexDelta = 1
                 performSegueWithIdentifier("selfSegue", sender: self)
+            } else {
+                print("index too big")
             }
+        } else {
+            print("no arrays or indicies")
         }
         print("left")
     }
