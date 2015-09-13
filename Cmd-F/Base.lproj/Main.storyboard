@@ -21,6 +21,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5oV-jZ-aAR">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuz-tT-m89">
                                 <rect key="frame" x="277" y="329" width="46" height="30"/>
                                 <animations/>
@@ -45,6 +49,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="animationView" destination="5oV-jZ-aAR" id="jdf-7H-oZd"/>
                         <outlet property="imageView" destination="uaf-gL-Ite" id="VAr-d9-Wh1"/>
                     </connections>
                 </viewController>

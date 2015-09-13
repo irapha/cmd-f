@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="cameraButton" destination="XUe-BE-qJm" id="dt4-I8-Cuu"/>
                 <outlet property="overlayView" destination="iN0-l3-epB" id="VP0-p7-nF2"/>
+                <outlet property="spinner" destination="S2l-IQ-NOF" id="TkS-BQ-5SM"/>
                 <outlet property="textQuery" destination="7k0-eq-pwu" id="kY3-O6-Iq0"/>
             </connections>
         </placeholder>
@@ -38,17 +39,22 @@
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                    <textInputTraits key="textInputTraits" keyboardAppearance="light"/>
                 </searchBar>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="S2l-IQ-NOF">
+                    <rect key="frame" x="290" y="524" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="7k0-eq-pwu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="0Xe-Mg-XUs"/>
                 <constraint firstAttribute="bottom" secondItem="XUe-BE-qJm" secondAttribute="bottom" constant="31" id="6Wz-fk-s4j"/>
+                <constraint firstItem="S2l-IQ-NOF" firstAttribute="centerY" secondItem="XUe-BE-qJm" secondAttribute="centerY" id="PRc-Vy-prq"/>
                 <constraint firstItem="XUe-BE-qJm" firstAttribute="top" secondItem="FeW-fA-9IN" secondAttribute="bottom" constant="27" id="QfV-1m-ski"/>
                 <constraint firstItem="XUe-BE-qJm" firstAttribute="centerX" secondItem="FeW-fA-9IN" secondAttribute="centerX" id="W42-RN-97n"/>
                 <constraint firstItem="7k0-eq-pwu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="hV8-QQ-V7n"/>
+                <constraint firstItem="S2l-IQ-NOF" firstAttribute="centerX" secondItem="XUe-BE-qJm" secondAttribute="centerX" id="iQd-db-Lin"/>
                 <constraint firstAttribute="trailing" secondItem="7k0-eq-pwu" secondAttribute="trailing" constant="8" id="vRX-8K-WPU"/>
                 <constraint firstItem="XUe-BE-qJm" firstAttribute="centerX" secondItem="7k0-eq-pwu" secondAttribute="centerX" id="yuy-gS-Wt6"/>
             </constraints>

@@ -7,9 +7,12 @@
 //
 
 import UIKit
+
 let HISTORY_KEY = "history key"
 class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var animationView: UIImageView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var overlayView: UIView!
     @IBOutlet weak var textQuery: UISearchBar!
@@ -37,6 +40,22 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         // Intialize tesseract.
         tesseract = G8Tesseract(language:"eng")
         tesseract!.delegate = self
+
+        // Swipe up on imageview loads the camera view.
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: "respondToSwipeUp:")
+        swipeUp.direction = .Up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        // Initialize progress animation.
+        createScannerAnimation()
+    }
+    
+    func respondToSwipeUp(gesture: UIGestureRecognizer) {
+        if picker != nil {
+            presentViewController(picker!, animated: true, completion: nil)
+        } else {
+            print("fail")
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -89,6 +108,27 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         }
     }
     
+
+    
+    func highlight(selectedChar: CGRect){
+        //Draw low-opacity yellow rectangle over character
+        
+        var highlightedSpace: CGRect
+        
+        highlightedSpace.origin = selectedChar.origin
+        
+        highlightedSpace.height == selectedChar.height
+        highlightedSpace.width == selectedChar.width * 2
+        
+        var context: CGContextRef
+        context = UIGraphicsGetCurrentContext()
+        
+        CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 0.5)
+        CGContextSetFillColorWithColor(context, UIColor.clearColor().CGColor!)
+        
+        
+    }
+    
     func presentCamera() {
         print("tapp")
         if picker != nil {
@@ -133,8 +173,30 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         print("Starting tesseract")
         
         // Find ranges in recognizedText where seachQuery matches. Remove all new lines and spaces from both strings (so that the blocks array correspond one-to-one).
-        let searchQuery = textQuery.text
-        let imageNSURL = saveDataToDisk(image)
+        var searchQuery = textQuery.text
+        
+        // Start spinner.
+        self.spinner.hidden = false
+        self.spinner.startAnimating()
+        
+        // Display image.
+        imageView.image = image
+        
+        print("animate")
+        // Start loading animation.
+        animationView.startAnimating()
+        
+        print("dismiss")
+        dismissViewControllerAnimated(true, completion: {() -> () in
+            // Stop spinner
+            self.spinner.stopAnimating()
+            self.spinner.hidden = true
+            
+            // Start character recognition.
+            self.tesseract(searchQuery, image: image)
+        })
+        
+        var imageNSURL = saveDataToDisk(image)
         var NewHistoryObject: HistoryObject
         if imageNSURL != nil && searchQuery != nil {
             NewHistoryObject = HistoryObject(text: searchQuery!, url: imageNSURL!)
@@ -150,11 +212,6 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
             }
             defaults.synchronize()
         }
-        
-        dismissViewControllerAnimated(true, completion:
-            {if searchQuery != nil {
-                self.tesseract(searchQuery!, image: image)
-                }})
     }
     
     func errorAlert(title: String, message: String) {
@@ -173,14 +230,15 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
         // Give tesseract a preprocessed UIImage.
         tesseract!.image = image.g8_grayScale().g8_blackAndWhite()
         
+        print("Running OCR")
         // Recognize characters.
         tesseract!.recognize()
         let recognizedText = tesseract!.recognizedText
         let formattedRecognizedText = recognizedText.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
-        let formattedSearchQuery = searchQuery.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
-        
+        let strippedSearchQuery = searchQuery.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("\n", withString: "")
+        let formattedSearchQuery = strippedSearchQuery
         // Get match start and end index.
-        if formattedSearchQuery.characters.count > 0 {
+        if strippedSearchQuery.characters.count > 0 {
             if let rangeOfMatch = formattedRecognizedText.rangeOfString(formattedSearchQuery) {
                 let matchStartIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch.startIndex)
                 let matchEndIndex = formattedRecognizedText.startIndex.distanceTo(rangeOfMatch.endIndex)
@@ -196,12 +254,39 @@ class ViewController: UIViewController, G8TesseractDelegate, UIImagePickerContro
                 //            let query = ("/books/v1/volumes?q=" + recognizedText!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())! + "&key=AIzaSyDhY74nCaymN5Slm-doWyoweJrAbLYWJVM")
                 //            NSLog("%@", query)
                 //            remote.connect(query)
+                animationView.stopAnimating()
             } else {
                 errorAlert("Unknown query", message: "Could not be completed")
+            }
             }
         } else {
             errorAlert("Unknown query", message: "Could not be completed")
         }
+    }
+    
+    func createScannerAnimation() {
+        print("starting animation")
+        
+        var animationImages: [UIImage] = []
+        
+        for i in 1..<122 {
+            var imgName: String
+            
+            if i < 10 {
+                imgName = "animation/scanner_img_sequence/frame-00000" + String(i) + ".png"
+            } else if i < 100 {
+                imgName = "animation/scanner_img_sequence/frame-0000" + String(i) + ".png"
+            } else {
+                imgName = "animation/scanner_img_sequence/frame-000" + String(i) + ".png"
+            }
+            
+            let frame = UIImage(named: imgName)!
+            animationImages.append(frame)
+        }
+        
+        animationView.animationImages = animationImages
+        animationView.animationDuration = 3
+        animationView.animationRepeatCount = 0
     }
 }
 
